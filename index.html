@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ember & Oak — Seasonal cuisine, wood-fired flavors, and warm hospitality in the heart of the city.">
+  <title>Ember & Oak | Restaurant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#" class="logo">Ember <span>&</span> Oak</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reservations" class="btn btn-nav">Reserve</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <p class="hero-tagline">Wood-fired · Seasonal · Local</p>
+        <h1>Where fire meets flavor</h1>
+        <p class="hero-desc">An intimate dining experience celebrating the seasons, crafted over open flame and shared at the table.</p>
+        <div class="hero-actions">
+          <a href="#reservations" class="btn btn-primary">Book a Table</a>
+          <a href="#menu" class="btn btn-outline">View Menu</a>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <section class="about section" id="about">
+      <div class="container about-grid">
+        <div class="about-images">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=750&fit=crop" alt="Elegant plated dish" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&h=500&fit=crop" alt="Chef preparing food" loading="lazy" class="about-img-accent">
+        </div>
+        <div class="about-text">
+          <span class="section-label">Our Story</span>
+          <h2>Rooted in tradition, inspired by the seasons</h2>
+          <p>At Ember & Oak, we believe great food begins with great ingredients. Our kitchen works closely with local farmers and foragers to bring the best of each season to your plate.</p>
+          <p>Every dish is kissed by our wood-fired oven and grill — techniques passed down through generations, reimagined for the modern table.</p>
+          <div class="about-stats">
+            <div class="stat">
+              <span class="stat-number">15+</span>
+              <span class="stat-label">Years of excellence</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Locally sourced</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">4.9</span>
+              <span class="stat-label">Guest rating</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu section" id="menu">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Discover</span>
+          <h2>Our Menu</h2>
+          <p>Thoughtfully crafted dishes that change with the seasons. Ask your server about today's specials.</p>
+        </div>
+
+        <div class="menu-tabs" role="tablist">
+          <button class="menu-tab active" role="tab" aria-selected="true" data-tab="starters">Starters</button>
+          <button class="menu-tab" role="tab" aria-selected="false" data-tab="mains">Mains</button>
+          <button class="menu-tab" role="tab" aria-selected="false" data-tab="desserts">Desserts</button>
+          <button class="menu-tab" role="tab" aria-selected="false" data-tab="drinks">Drinks</button>
+        </div>
+
+        <div class="menu-panels">
+          <div class="menu-panel active" id="starters" role="tabpanel">
+            <div class="menu-item">
+              <div class="menu-item-header">
+                <h3>Charred Octopus</h3>
+                <span class="price">$18</span>
+              </div>
+              <p>Wood-grilled octopus, smoked paprika aioli, preserved lemon, herb salad</p>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-header">
+                <h3>Burrata & Heirloom Tomatoes</h3>
+                <span class="price">$16</span>
+              </div>
+              <p>Creamy burrata, aged balsamic, basil oil, flaky sea salt</p>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-header">
+                <h3>Ember-Roasted Beets</h3>
+                <span class="price">$14</span>
+              </div>
+              <p>Golden and red beets, whipped goat cheese, candied walnuts, arugula</p>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-header">
+                <h3>Oysters on the Half Shell</h3>
+                <span class="price">$22</span>
+              </div>
+              <p>Half dozen daily selection, mignonette, horseradish, lemon</p>
+            </div>
+          </div>
+
+          <div class="menu-panel" id="mains" role="tabpanel" hidden>
+            <div class="menu-item">
+              <div class="menu-item-header">
+                <h3>Wood-Fired Ribeye</h3>
+                <span class="price">$48</span>
+              </div>
+              <p>16oz prime ribeye, bone marrow butter, roasted garlic, seasonal vegetables</p>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-header">
+                <h3>Pan-Seared Sea Bass</h3>
+                <span class="price">$36</span>
+              </div>
+              <p>Crispy skin bass, saffron risotto, fennel, citrus beurre blanc</p>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-header">
+                <h3>Wild Mushroom Risotto</h3>
+                <span class="price">$28</span>
+              </div>
+              <p>Foraged mushrooms, aged parmesan, truffle oil, fresh thyme</p>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-header">
+                <h3>Half Roasted Chicken</h3>
+                <span class="price">$32</span>
+              </div>
+              <p>Herb-brined chicken, fingerling potatoes, pan jus, roasted carrots</p>
+            </div>
+          </div>
+
+          <div class="menu-panel" id="desserts" role="tabpanel" hidden>
+            <div class="menu-item">
+              <div class="menu-item-header">
+                <h3>Dark Chocolate Torte</h3>
+                <span class="price">$12</span>
+              </div>
+              <p>70% Valrhona chocolate, raspberry coulis, vanilla bean ice cream</p>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-header">
+                <h3>Burnt Basque Cheesecake</h3>
+                <span class="price">$11</span>
+              </div>
+              <p>Caramelized top, berry compote, whipped crème fraîche</p>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-header">
+                <h3>Seasonal Fruit Galette</h3>
+                <span class="price">$10</span>
+              </div>
+              <p>Buttery pastry, market fruit, honey mascarpone</p>
+            </div>
+          </div>
+
+          <div class="menu-panel" id="drinks" role="tabpanel" hidden>
+            <div class="menu-item">
+              <div class="menu-item-header">
+                <h3>Ember Old Fashioned</h3>
+                <span class="price">$14</span>
+              </div>
+              <p>Bourbon, smoked maple, angostura, orange peel</p>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-header">
+                <h3>Garden Spritz</h3>
+                <span class="price">$12</span>
+              </div>
+              <p>Elderflower, prosecco, cucumber, fresh mint</p>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-header">
+                <h3>Curated Wine Selection</h3>
+                <span class="price">from $12</span>
+              </div>
+              <p>Ask your sommelier for pairings and by-the-glass options</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery section" id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Ambiance</span>
+          <h2>A glimpse inside</h2>
+        </div>
+        <div class="gallery-grid">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop" alt="Restaurant interior" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop" alt="Gourmet dish" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1550966841-3edb42c35746?w=600&h=400&fit=crop" alt="Cocktail bar" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1466978913421-61ad0b0d0b0e?w=600&h=400&fit=crop" alt="Dining table setting" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="reservations section" id="reservations">
+      <div class="container reservations-grid">
+        <div class="reservations-info">
+          <span class="section-label">Visit Us</span>
+          <h2>Reserve your table</h2>
+          <p>Join us for an unforgettable evening. We recommend booking at least 48 hours in advance for weekend dining.</p>
+
+          <div class="info-blocks">
+            <div class="info-block">
+              <h3>Hours</h3>
+              <p>Tue – Thu: 5pm – 10pm</p>
+              <p>Fri – Sat: 5pm – 11pm</p>
+              <p>Sun: 4pm – 9pm</p>
+              <p>Mon: Closed</p>
+            </div>
+            <div class="info-block">
+              <h3>Location</h3>
+              <p>142 Oak Street</p>
+              <p>Downtown, NY 10012</p>
+              <p><a href="tel:+12125551234">(212) 555-1234</a></p>
+            </div>
+          </div>
+        </div>
+
+        <form class="reservation-form" id="reservation-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="you@email.com">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Date</label>
+              <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+              <label for="time">Time</label>
+              <select id="time" name="time" required>
+                <option value="">Select time</option>
+                <option value="17:00">5:00 PM</option>
+                <option value="17:30">5:30 PM</option>
+                <option value="18:00">6:00 PM</option>
+                <option value="18:30">6:30 PM</option>
+                <option value="19:00">7:00 PM</option>
+                <option value="19:30">7:30 PM</option>
+                <option value="20:00">8:00 PM</option>
+                <option value="20:30">8:30 PM</option>
+                <option value="21:00">9:00 PM</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="guests">Guests</label>
+              <select id="guests" name="guests" required>
+                <option value="">Guests</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8+</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="notes">Special requests</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="Allergies, celebrations, seating preferences..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Request Reservation</button>
+          <p class="form-note" id="form-message" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">Ember <span>&</span> Oak</a>
+        <p>Seasonal cuisine, wood-fired flavors, warm hospitality.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reservations">Reservations</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>142 Oak Street, NY 10012</p>
+        <p><a href="tel:+12125551234">(212) 555-1234</a></p>
+        <p><a href="mailto:hello@emberandoak.com">hello@emberandoak.com</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>&copy; 2026 Ember & Oak. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
