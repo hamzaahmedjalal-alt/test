@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Shield, Truck, Award } from "lucide-react";
+import { brand, brandCopyright } from "@/lib/brand";
 
 export function Footer() {
   const policyLinks = [
@@ -14,14 +15,10 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-12">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <p className="text-2xl font-bold">نما بيوتي</p>
-            <p className="mt-2 text-sm text-white/70">
-              جمالك يستحق أكثر من كريم
-            </p>
-            <p className="mt-4 text-sm text-white/60">
-              العلامة السعودية الأولى للعناية والجمال — أدوات، عطور، وأجهزة
-              فاخرة للمرأة السعودية.
-            </p>
+            <p className="text-2xl font-bold">{brand.nameAr}</p>
+            <p className="text-xs text-white/50">{brand.nameEn}</p>
+            <p className="mt-2 text-sm text-white/70">{brand.taglineAr}</p>
+            <p className="mt-4 text-sm text-white/60">{brand.positioningAr}</p>
           </div>
 
           <div>
@@ -48,7 +45,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="mb-4 font-semibold">لماذا نما؟</p>
+            <p className="mb-4 font-semibold">لماذا {brand.nameArShort}؟</p>
             <ul className="space-y-3 text-sm text-white/70">
               <li className="flex items-center gap-2">
                 <Shield size={16} className="text-gold" />
@@ -67,8 +64,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/50">
-          © {new Date().getFullYear()} نما بيوتي — namabeauty.shop — جميع
-          الحقوق محفوظة
+          {brandCopyright()}
         </div>
       </div>
     </footer>

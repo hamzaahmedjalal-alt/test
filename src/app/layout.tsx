@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CartProvider } from "@/components/cart/CartProvider";
+import { brand } from "@/lib/brand";
 
 const tajawal = Tajawal({
   subsets: ["arabic"],
@@ -12,15 +13,14 @@ const tajawal = Tajawal({
 });
 
 export const metadata: Metadata = {
-  title: "نما بيوتي | العناية والجمال",
-  description:
-    "العلامة السعودية الأولى للعناية والجمال — أداة تصفيف، عطر ثابت بالحر، وجهاز بشرة فاخر. دفع عند الاستلام.",
-  metadataBase: new URL("https://namabeauty.shop"),
+  title: `${brand.nameAr} | ${brand.nicheAr}`,
+  description: `${brand.positioningAr} دفع عند الاستلام.`,
+  metadataBase: new URL(brand.url),
   openGraph: {
-    title: "نما بيوتي | العناية والجمال",
-    description: "نما ستيلر برو، نما ميست، نما جلو — دفع عند الاستلام",
-    url: "https://namabeauty.shop",
-    siteName: "نما بيوتي",
+    title: `${brand.nameAr} | ${brand.nicheAr}`,
+    description: `${brand.nameArShort} ستيلر برو، ${brand.nameArShort} ميست، ${brand.nameArShort} جلو — دفع عند الاستلام`,
+    url: brand.url,
+    siteName: brand.nameAr,
     locale: "ar_SA",
     type: "website",
   },

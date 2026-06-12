@@ -2,7 +2,17 @@
 
 متجر Next.js للعناية والجمال — عربي RTL — COD.
 
-**النطاق:** [namabeauty.shop](https://namabeauty.shop)
+## العلامة 🔒
+
+| | |
+|---|---|
+| **عربي (كامل)** | نما بيوتي |
+| **عربي (مختصر)** | نما |
+| **English (full)** | Nama Beauty |
+| **English (short)** | Nama |
+| **النطاق** | [namabeauty.shop](https://namabeauty.shop) ✅ مُشترى |
+
+راجع `NAMA-BEAUTY-BRAND-LOCK.md` و `src/lib/brand.ts` للهوية الرسمية.
 
 ## المنتجات
 
