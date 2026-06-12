@@ -2,8 +2,8 @@ import { Shield, FlaskConical, Leaf, Truck } from "lucide-react";
 
 const badges = [
   { icon: Shield, text: "دفع عند الاستلام" },
-  { icon: FlaskConical, text: "مكوّنات مدروسة علمياً" },
-  { icon: Leaf, text: "خالي من السكر المضاف" },
+  { icon: FlaskConical, text: "جودة فاخرة معتمدة" },
+  { icon: Leaf, text: "ضمان سنة" },
   { icon: Truck, text: "توصيل 2–4 أيام" },
 ];
 

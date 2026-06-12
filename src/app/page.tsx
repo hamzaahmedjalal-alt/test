@@ -16,13 +16,13 @@ export default function HomePage() {
               نما بيوتي
             </p>
             <h1 className="mt-4 text-4xl font-extrabold leading-tight text-olive md:text-5xl">
-              جمال ينمو
+              جمالك يستحق
               <br />
-              <span className="text-gold">من الداخل</span>
+              <span className="text-gold">أكثر من كريم</span>
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-gray-600">
-              العلامة السعودية الأولى للجمال الداخلي. مكملات غذائية مدروسة
-              علمياً للشعر والنوم والبشرة — بدون سيرومات صينية ولا وعود كاذبة.
+              العلامة السعودية الأولى للعناية والجمال. أدوات تصفيف، عطور ثابتة
+              بالحر، وأجهزة بشرة فاخرة — بدون أسعار خيالية ولا منتجات مجهولة.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link href="/products">
@@ -102,14 +102,14 @@ export default function HomePage() {
         <div className="grid gap-6 md:grid-cols-3">
           {[
             {
-              emoji: "🔬",
-              title: "علم مو وعود",
-              desc: "مكوّنات مدروسة علمياً — KSM-66، كولاجين بحري، بيوتين. بدون ادعاءات طبية مضللة.",
+              emoji: "💎",
+              title: "فخامة بسعر عادل",
+              desc: "جودة Dyson وForeo بتسعير معقول. تغليف فاخر وعلامة سعودية تثقي فيها.",
             },
             {
               emoji: "🇸🇦",
-              title: "سعودية أولاً",
-              desc: "مصممة للمرأة السعودية — مناخ صحراوي، حجاب، توتر يومي. نفهم مشاكلك لأننا عشناها.",
+              title: "مصممة للخليج",
+              desc: "ثبات عطر بالحر، تصفيف يثبت بالرطوبة، بشرة تناسب مناخنا. مو منتجات أوروبية ما تناسبنا.",
             },
             {
               emoji: "📦",

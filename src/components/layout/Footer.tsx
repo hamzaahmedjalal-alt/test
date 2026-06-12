@@ -16,11 +16,11 @@ export function Footer() {
           <div>
             <p className="text-2xl font-bold">نما بيوتي</p>
             <p className="mt-2 text-sm text-white/70">
-              جمال ينمو من الداخل
+              جمالك يستحق أكثر من كريم
             </p>
             <p className="mt-4 text-sm text-white/60">
-              العلامة السعودية الأولى للجمال الداخلي — مكملات غذائية مدروسة
-              علمياً للمرأة السعودية.
+              العلامة السعودية الأولى للعناية والجمال — أدوات، عطور، وأجهزة
+              فاخرة للمرأة السعودية.
             </p>
           </div>
 
@@ -60,7 +60,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Award size={16} className="text-gold" />
-                مكوّنات GMP معتمدة
+                ضمان سنة على الأجهزة
               </li>
             </ul>
           </div>

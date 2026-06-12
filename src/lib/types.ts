@@ -1,4 +1,4 @@
-export type ProductSku = "nama-hair" | "nama-rest" | "nama-glow";
+export type ProductSku = "nama-styler" | "nama-mist" | "nama-glow";
 
 export interface Product {
   sku: ProductSku;

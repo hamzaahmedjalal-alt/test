@@ -3,23 +3,23 @@ import { getProductBySku } from "./products";
 
 export function getUpsellProduct(items: CartItem[]): Product | null {
   const inCart = new Set(items.map((i) => i.sku));
-  const all: ProductSku[] = ["nama-hair", "nama-rest", "nama-glow"];
+  const all: ProductSku[] = ["nama-styler", "nama-mist", "nama-glow"];
 
   if (inCart.size >= 3) {
-    const top = items[0]?.sku ?? "nama-hair";
+    const top = items[0]?.sku ?? "nama-styler";
     return getProductBySku(top);
   }
 
   const priority: Record<string, ProductSku> = {
-    "nama-hair": "nama-rest",
-    "nama-rest": "nama-glow",
-    "nama-glow": "nama-hair",
-    "nama-hair,nama-rest": "nama-glow",
-    "nama-rest,nama-hair": "nama-glow",
-    "nama-hair,nama-glow": "nama-rest",
-    "nama-glow,nama-hair": "nama-rest",
-    "nama-rest,nama-glow": "nama-hair",
-    "nama-glow,nama-rest": "nama-hair",
+    "nama-styler": "nama-mist",
+    "nama-mist": "nama-glow",
+    "nama-glow": "nama-styler",
+    "nama-mist,nama-styler": "nama-glow",
+    "nama-styler,nama-mist": "nama-glow",
+    "nama-glow,nama-styler": "nama-mist",
+    "nama-styler,nama-glow": "nama-mist",
+    "nama-glow,nama-mist": "nama-styler",
+    "nama-mist,nama-glow": "nama-styler",
   };
 
   const key = [...inCart].sort().join(",");
@@ -41,17 +41,17 @@ export function getUpsellMessage(items: CartItem[], upsell: Product): string {
   if (!first) return `جربي ${upsell.name} بسعر خاص`;
 
   const reasons: Record<string, Partial<Record<ProductSku, string>>> = {
-    "nama-hair": {
-      "nama-rest": "التوتر من أسباب تساقط الشعر — جربي أمالج نما للراحة",
-      "nama-glow": "الكولاجين يفيد الشعر والبشرة معاً",
+    "nama-styler": {
+      "nama-mist": "شعرك حلو — خليه يفوح برائحة تدوم بالحر",
+      "nama-glow": "بشرة نضيفة تكمّل إطلالة شعرك",
     },
-    "nama-rest": {
-      "nama-glow": "قلة النوم تُبهت البشرة — أكملي روتينك",
-      "nama-hair": "الراحة تنعكس على صحة شعرك",
+    "nama-mist": {
+      "nama-glow": "الرائحة حلوة — خلي بشرتك تبان مثلها",
+      "nama-styler": "العطر يكمل — صففي شعرك بأداة واحدة",
     },
     "nama-glow": {
-      "nama-hair": "الكولاجين يقوّي الشعر من الجذور",
-      "nama-rest": "النوم الكافي = توهج أفضل",
+      "nama-styler": "بشرتك صارت أنظف — كملي بشعر يثبت",
+      "nama-mist": "توهج البشرة يكتمل برائحة فاخرة",
     },
   };
 

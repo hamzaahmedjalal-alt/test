@@ -130,18 +130,18 @@ export function ProductDetail({ product }: ProductDetailProps) {
               <tr>
                 <th className="p-4 text-right">الميزة</th>
                 <th className="p-4 text-center">نما بيوتي</th>
-                <th className="p-4 text-center">السيرومات الصينية</th>
-                <th className="p-4 text-center">الكريمات المجهولة</th>
+                <th className="p-4 text-center">المنتجات الصينية الرخيصة</th>
+                <th className="p-4 text-center">العلامات العالمية</th>
               </tr>
             </thead>
             <tbody>
               {[
-                ["يعمل من الداخل", true, false, false],
-                ["مكوّنات مدروسة علمياً", true, false, false],
-                ["دفع عند الاستلام", true, false, true],
-                ["بدون ادعاءات طبية مضللة", true, false, false],
-                ["تغليف فاخر", true, false, false],
-              ].map(([feature, nama, serum, cream], i) => (
+                ["مصمم لمناخ الخليج", true, false, false],
+                ["جودة فاخرة بسعر معقول", true, false, false],
+                ["دفع عند الاستلام", true, true, false],
+                ["ضمان سنة", true, false, true],
+                ["تغليف فاخر + علامة سعودية", true, false, false],
+              ].map(([feature, nama, cheap, premium], i) => (
                 <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-sand/50"}>
                   <td className="p-4 font-medium">{feature as string}</td>
                   <td className="p-4 text-center">
@@ -152,14 +152,14 @@ export function ProductDetail({ product }: ProductDetailProps) {
                     )}
                   </td>
                   <td className="p-4 text-center">
-                    {serum ? (
+                    {cheap ? (
                       <Check className="mx-auto text-olive" size={20} />
                     ) : (
                       <X className="mx-auto text-red-300" size={20} />
                     )}
                   </td>
                   <td className="p-4 text-center">
-                    {cream ? (
+                    {premium ? (
                       <Check className="mx-auto text-olive" size={20} />
                     ) : (
                       <X className="mx-auto text-red-300" size={20} />
