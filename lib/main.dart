@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'firebase_options.dart';
@@ -11,14 +12,27 @@ import 'screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  runApp(const MyApp());
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    debugPrint('Firebase init skipped (preview mode): $e');
+  }
+  runApp(MyApp(initialRoute: _resolveInitialRoute()));
+}
+
+String _resolveInitialRoute() {
+  if (!kIsWeb) return '/';
+  final fragment = Uri.base.fragment;
+  if (fragment.isEmpty) return '/';
+  return fragment.startsWith('/') ? fragment : '/$fragment';
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, this.initialRoute = '/'});
+
+  final String initialRoute;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +49,7 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      initialRoute: '/',
+      initialRoute: initialRoute,
       routes: {
         '/': (ctx) => const SplashScreen(),
         '/home': (ctx) => const CustomerHomeScreen(),

@@ -32,3 +32,6 @@ firebase.json
 # OS
 .DS_Store
 Thumbs.db
+
+# Scripts
+scripts/node_modules/
