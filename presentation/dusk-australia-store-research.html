@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DUSK — خطة متجر دروبشيبينغ أسترالي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0e17;
+      --bg-card: #111827;
+      --accent: #c9a962;
+      --accent-soft: rgba(201, 169, 98, 0.15);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --border: rgba(201, 169, 98, 0.2);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow: hidden;
+    }
+
+    .deck {
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .slide {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3rem 5rem;
+      position: relative;
+      background: radial-gradient(ellipse at 20% 50%, rgba(201,169,98,0.06) 0%, transparent 50%),
+                  radial-gradient(ellipse at 80% 20%, rgba(59,130,246,0.04) 0%, transparent 40%),
+                  var(--bg);
+    }
+
+    .slide::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .slide-number {
+      position: absolute;
+      bottom: 2rem;
+      left: 3rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+    }
+
+    .brand-tag {
+      position: absolute;
+      top: 2rem;
+      left: 3rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #e2e8f0;
+    }
+
+    .subtitle {
+      font-size: 1.35rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin-bottom: 2rem;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.3s;
+    }
+
+    .card:hover { border-color: var(--accent); }
+
+    .card-highlight {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, var(--bg-card) 0%, rgba(201,169,98,0.08) 100%);
+    }
+
+    .stat {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    ul { list-style: none; margin-top: 0.5rem; }
+
+    li {
+      padding: 0.4rem 0;
+      padding-right: 1.5rem;
+      position: relative;
+      color: #cbd5e1;
+    }
+
+    li::before {
+      content: '◆';
+      position: absolute;
+      right: 0;
+      color: var(--accent);
+      font-size: 0.6rem;
+      top: 0.65rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin: 0.15rem;
+    }
+
+    .badge-success { background: rgba(52,211,153,0.15); color: var(--success); }
+    .badge-warning { background: rgba(251,191,36,0.15); color: var(--warning); }
+    .badge-danger { background: rgba(248,113,113,0.15); color: var(--danger); }
+    .badge-gold { background: var(--accent-soft); color: var(--accent); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: right;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .product-card {
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .product-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .margin { color: var(--success); font-weight: 600; }
+
+    .nav {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 100;
+    }
+
+    .nav button {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.2s;
+    }
+
+    .nav button:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--accent);
+      z-index: 100;
+      transition: width 0.3s;
+    }
+
+    .verdict {
+      font-size: 1.1rem;
+      padding: 1rem 1.5rem;
+      border-right: 4px solid var(--accent);
+      background: var(--accent-soft);
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: flex-start;
+    }
+
+    .timeline-week {
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 700;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 900px) {
+      .slide { padding: 2rem 1.5rem; }
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.5rem; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      .nav, .progress { display: none; }
+      .slide { page-break-after: always; min-height: auto; padding: 2rem; }
+      body { overflow: visible; }
+      .deck { overflow: visible; height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <div class="deck" id="deck">
+
+    <!-- Slide 1: Title -->
+    <section class="slide" id="slide-1">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h1>خطة متجر دروبشيبينغ<br>علامة تجارية في أستراليا</h1>
+      <p class="subtitle">بحث استراتيجي شامل: السوق، المجال، 3 منتجات، العلامة التجارية، وخطة تنفيذ بميزانية 500 دولار</p>
+      <div style="margin-top: 2rem;">
+        <span class="badge badge-gold">أستراليا — السوق المختار</span>
+        <span class="badge badge-gold">Stripe</span>
+        <span class="badge badge-gold">بيئة النوم</span>
+        <span class="badge badge-gold">3 منتجات بطل</span>
+      </div>
+      <p style="margin-top: 3rem; color: var(--text-muted); font-size: 0.9rem;">يونيو 2026 — بحث مبني على بيانات السوق الأسترالي واتجاهات التجارة الإلكترونية</p>
+      <span class="slide-number">01 / 18</span>
+    </section>
+
+    <!-- Slide 2: Executive Summary -->
+    <section class="slide" id="slide-2">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h2>الملخص التنفيذي</h2>
+      <div class="verdict">
+        <strong>التوصية النهائية:</strong> إطلاق متجر <strong>DUSK</strong> — علامة أسترالية فاخرة لـ «بيئة النوم المثالية» — يبيع 3 منتجات تحل مشاكل النوم اليومية لملايين الأستراليين، بأسعار مرتفعة (69–149 دولار أسترالي) لمنتجات تكلف 8–20 دولار.
+      </div>
+      <div class="grid-3">
+        <div class="card card-highlight">
+          <div class="stat">أستراليا</div>
+          <div class="stat-label">السوق المختار (ليس نيوزيلندا ولا الاسكندنافية)</div>
+        </div>
+        <div class="card card-highlight">
+          <div class="stat">بيئة النوم</div>
+          <div class="stat-label">مجال واحد — طلب دائم + هوامش عالية</div>
+        </div>
+        <div class="card card-highlight">
+          <div class="stat">3 منتجات</div>
+          <div class="stat-label">ضوء + ضوضاء + راحة = نظام نوم متكامل</div>
+        </div>
+      </div>
+      <span class="slide-number">02 / 18</span>
+    </section>
+
+    <!-- Slide 3: Market Comparison -->
+    <section class="slide" id="slide-3">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h2>مقارنة الأسواق الثلاثة</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>المعيار</th>
+            <th>🇦🇺 أستراليا</th>
+            <th>🇳🇿 نيوزيلندا</th>
+            <th>🇸🇪🇳🇴🇩🇰 الاسكندنافية</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>حجم السوق</td>
+            <td><strong>ضخم</strong> (~70+ مليار دولار تجارة إلكترونية)</td>
+            <td>صغير (~12 مليار NZD)</td>
+            <td>متوسط لكن مشبع</td>
+          </tr>
+          <tr>
+            <td>Stripe</td>
+            <td><span class="badge badge-success">ممتاز</span></td>
+            <td><span class="badge badge-success">ممتاز</span></td>
+            <td><span class="badge badge-success">ممتاز</span></td>
+          </tr>
+          <tr>
+            <td>تكلفة الإعلانات (CAC)</td>
+            <td>مرتفعة لكن سوق أكبر يعوّض</td>
+            <td>أقل تكلفة، سوق محدود</td>
+            <td>مرتفعة جداً + Klarna ضروري</td>
+          </tr>
+          <tr>
+            <td>الشحن السريع (دروبشيب)</td>
+            <td><span class="badge badge-success">2–5 أيام</span> مستودعات محلية</td>
+            <td>3–10 أيام</td>
+            <td>5–7 أيام من EU فقط</td>
+          </tr>
+          <tr>
+            <td>معدل التأكيد/التسليم</td>
+            <td><span class="badge badge-success">عالي جداً</span> دفع مسبق (Stripe)</td>
+            <td>عالي</td>
+            <td>عالي لكن توقعات جودة أعلى</td>
+          </tr>
+          <tr>
+            <td>ميزانية 500$</td>
+            <td><span class="badge badge-success">الأنسب</span></td>
+            <td>بديل ثانٍ</td>
+            <td><span class="badge badge-danger">غير مناسب</span></td>
+          </tr>
+          <tr>
+            <td>لغة المحتوى</td>
+            <td>إنجليزية — سوق واحد</td>
+            <td>إنجليزية</td>
+            <td>ترجمة 4 لغات مطلوبة</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="verdict" style="margin-top: 1.5rem;">
+        <strong>لماذا أستراليا؟</strong> أكبر سوق، مستودعات دروبشيب محلية (Dropshipzone, CJ AU)، دفع Stripe مسبق = تأكيد طلبات شبه 100%، وقوة شرائية عالية تسمح بأسعار مرتفعة.
+      </div>
+      <span class="slide-number">03 / 18</span>
+    </section>
+
+    <!-- Slide 4: Why This Niche -->
+    <section class="slide" id="slide-4">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h2>لماذا مجال «بيئة النوم»؟</h2>
+      <div class="grid-2">
+        <div>
+          <h3>بيانات السوق الأسترالي</h3>
+          <ul>
+            <li><strong>1 من كل 3</strong> أستراليين يعاني من مشاكل نوم (استطلاع SBS)</li>
+            <li><strong>29% فقط</strong> ينامون طوال الليل بدون انقطاع</li>
+            <li>سوق تقنية النوم: <strong>498 مليون دولار</strong> (2025) → 1.38 مليار (2033)</li>
+            <li>معدل نمو سنوي: <strong>13.6%</strong></li>
+            <li>تكلفة قلة النوم على الاقتصاد: <strong>66 مليار دولار أسترالي سنوياً</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h3>لماذا ينجح للدروبشيبينغ؟</h3>
+          <ul>
+            <li>مشكلة <strong>يومية</strong> — ليست موضة عابرة</li>
+            <li>جمهور <strong>واسع</strong> — كل البالغين</li>
+            <li>منتجات <strong>خفيفة</strong> — شحن رخيص</li>
+            <li>معدل إرجاع <strong>أقل من 5%</strong> (غير ملابس/إلكترونيات معقدة)</li>
+            <li>لا مطالبات طبية إذا صُيغت كـ «راحة» وليس «علاج»</li>
+            <li>طلب على مدار السنة (شتاء: دفء/ظلام — صيف: تبريد/ضوضاء)</li>
+            <li>إمكانية <strong>باقات</strong> ترفع متوسط الطلب إلى 120–200 دولار</li>
+          </ul>
+        </div>
+      </div>
+      <span class="slide-number">04 / 18</span>
+    </section>
+
+    <!-- Slide 5: Brand Strategy -->
+    <section class="slide" id="slide-5">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h2>استراتيجية العلامة التجارية: DUSK</h2>
+      <div class="grid-2">
+        <div class="card card-highlight">
+          <h3>🌙 هوية DUSK</h3>
+          <ul>
+            <li><strong>الاسم:</strong> DUSK — «الغسق»، لحظة الانتقال للراحة</li>
+            <li><strong>الشعار:</strong> "Your Night, Reclaimed" — ليلتك، مستردة</li>
+            <li><strong>الموقع:</strong> علامة أسترالية فاخرة (ليست متجر منتجات رخيصة)</li>
+            <li><strong>الألوان:</strong> كحلي عميق + ذهبي + أبيض كريمي</li>
+            <li><strong>النبرة:</strong> هادئة، علمية-نمط-حياة، بدون وعود طبية</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>كيف تبيع منتجاً رخيصاً بسعر مرتفع؟</h3>
+          <ul>
+            <li><strong>إعادة التغليف:</strong> صندوق أسود مطفي + بطاقة «دليل النوم» + ملصق DUSK</li>
+            <li><strong>التسمية:</strong> لا «آلة ضوضاء بيضاء» → «DUSK Hush — نظام الصوت المهدئ»</li>
+            <li><strong>التصوير:</strong> غرف نوم أسترالية حقيقية، إضاءة دافئة، لا صور AliExpress</li>
+            <li><strong>الباقات:</strong> «طقم غرفة النوم الكامل» بدل منتج واحد</li>
+            <li><strong>المحتوى:</strong> «اختبار بيئة نومك» — كويز تفاعلي يقود للشراء</li>
+            <li><strong>الضمان:</strong> 30 ليلة رضا — يبني ثقة (مثل العلامات الفاخرة)</li>
+          </ul>
+        </div>
+      </div>
+      <span class="slide-number">05 / 18</span>
+    </section>
+
+    <!-- Slide 6: Three Problems -->
+    <section class="slide" id="slide-6">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h2>المشاكل الثلاث الكبرى التي نحلها</h2>
+      <div class="grid-3">
+        <div class="card card-highlight">
+          <h3>🔆 المشكلة 1: الضوء</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+            أعمدة الإنارة، شروق الشمس المبكر، أضواء الجيران — خاصة في المدن الأسترالية وعند المستأجرين الذين لا يستطيعون تركيب ستائر دائمة.
+          </p>
+          <p><strong>الإلحاح:</strong> «كل ليلة تنام فيها مع ضوء = ليلة ضائعة»</p>
+          <p style="margin-top: 0.5rem;"><strong>الشراء الفوري:</strong> حل الليلة بدون تجديد — تركيب في 5 دقائق</p>
+        </div>
+        <div class="card card-highlight">
+          <h3>🔊 المشكلة 2: الضوضاء</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+            حركة المرور، الجيران، شخير الشريك، أصوات الحي — 40% من سكان المدن الأسترالية يتأثرون بالضوضاء الحضرية ليلاً.
+          </p>
+          <p><strong>الإلحاح:</strong> «غداً اجتماع مهم ولا تستطيع النوم»</p>
+          <p style="margin-top: 0.5rem;"><strong>الشراء الفوري:</strong> تشغيل فوري — نتيجة الليلة الأولى</p>
+        </div>
+        <div class="card card-highlight">
+          <h3>😴 المشكلة 3: عدم الراحة</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+            وسادة ساخنة صيفاً، قناع يرتفع أثناء النوم، إزعاج خفيف يمنع النوم العميق — مشكلة يومية لملايين الأستراليين.
+          </p>
+          <p><strong>الإلحاح:</strong> «تستيقظ مرهقاً كل صباح»</p>
+          <p style="margin-top: 0.5rem;"><strong>الشراء الفوري:</strong> طقم جاهز — لا حاجة لاختيار قطع متفرقة</p>
+        </div>
+      </div>
+      <span class="slide-number">06 / 18</span>
+    </section>
+
+    <!-- Slide 7: Product 1 -->
+    <section class="slide" id="slide-7">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h2>المنتج 1: DUSK Eclipse</h2>
+      <p class="subtitle">نظام التعتيم المحمول للنوافذ — للمستأجرين ومن يحتاج ظلاماً تاماً</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>ما يحلّه</h3>
+          <ul>
+            <li>ضوء الشارع يدخل من الستائر الرقيقة</li>
+            <li>شروق الشمس الساعة 5 صباحاً يوقظك</li>
+            <li>المستأجرون لا يستطيعون تثبيت ستائر دائمة</li>
+            <li>غرف الأطفال تحتاج ظلاماً للنوم المبكر</li>
+          </ul>
+          <h3 style="margin-top: 1.5rem;">المنتج الأساسي (من المورد)</h3>
+          <p style="color: var(--text-muted);">ستائر تعتيم محمولة بتقنية شفط/توتر — منتج صيني مُباع بكميات كبيرة لكن بدون علامة تجارية في أستراليا</p>
+        </div>
+        <div class="card card-highlight">
+          <h3>إعادة التغليف كـ DUSK</h3>
+          <ul>
+            <li>الاسم: <strong>DUSK Eclipse — Portable Blackout System</strong></li>
+            <li>يُباع كـ «نظام» وليس «ستارة»</li>
+            <li>يتضمن: دليل قياس النوافذ + أشرطة لاصقة DUSK</li>
+            <li>تصوير: غرفة نوم أسترالية قبل/بعد</li>
+          </ul>
+          <div class="price-row">
+            <span>تكلفة المورد: <strong>~12–18 AUD</strong></span>
+            <span>سعر البيع: <strong>89–119 AUD</strong></span>
+          </div>
+          <div class="price-row">
+            <span>الهامش الإجمالي:</span>
+            <span class="margin">~65–75%</span>
+          </div>
+          <div style="margin-top: 1rem;">
+            <span class="badge badge-success">معدل إرجاع منخفض</span>
+            <span class="badge badge-success">خفيف الوزن</span>
+            <span class="badge badge-success">لا يحتاج RCM</span>
+          </div>
+        </div>
+      </div>
+      <span class="slide-number">07 / 18</span>
+    </section>
+
+    <!-- Slide 8: Product 2 -->
+    <section class="slide" id="slide-8">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h2>المنتج 2: DUSK Hush</h2>
+      <p class="subtitle">جهاز الصوت المهدئ للنوم — 20+ نغمة محيطية بتصميم فاخر</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>ما يحلّه</h3>
+          <ul>
+            <li>ضوضاء المرور والجيران المستمرة</li>
+            <li>شخير الشريك (يُوصف كـ «إخفاء الضوضاء» وليس علاج)</li>
+            <li>صعوبة النوم في بيئات جديدة (سفر، شقق)</li>
+            <li>الأطفال يحتاجون روتين صوتي للنوم</li>
+          </ul>
+          <h3 style="margin-top: 1.5rem;">⚠️ متطلب حاسم</h3>
+          <p style="color: var(--warning);">يجب أن يحمل شهادة <strong>RCM</strong> (الامتثال الكهربائي الأسترالي) — لا تبع أي جهاز كهربائي بدونها</p>
+        </div>
+        <div class="card card-highlight">
+          <h3>إعادة التغليف كـ DUSK</h3>
+          <ul>
+            <li>الاسم: <strong>DUSK Hush — Sleep Sound Environment</strong></li>
+            <li>تصميم خارجي أسود مطفي (اختر مورّداً بجودة عالية)</li>
+            <li>باقة مع بطاقة «7 ليالٍ لروتين نوم أفضل»</li>
+            <li>فيديو UGC: تشغيل الجهاز في غرفة نوم حقيقية</li>
+          </ul>
+          <div class="price-row">
+            <span>تكلفة المورد: <strong>~15–22 AUD</strong></span>
+            <span>سعر البيع: <strong>99–149 AUD</strong></span>
+          </div>
+          <div class="price-row">
+            <span>الهامش الإجمالي:</span>
+            <span class="margin">~60–70%</span>
+          </div>
+          <div style="margin-top: 1rem;">
+            <span class="badge badge-success">طلب متزايد في AU</span>
+            <span class="badge badge-warning">يتطلب RCM</span>
+            <span class="badge badge-success">هدية ممتازة</span>
+          </div>
+        </div>
+      </div>
+      <span class="slide-number">08 / 18</span>
+    </section>
+
+    <!-- Slide 9: Product 3 -->
+    <section class="slide" id="slide-9">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h2>المنتج 3: DUSK Veil</h2>
+      <p class="subtitle">طقم الراحة العميقة — قناع نوم فاخر + وسادة تبريد + حقيبة سفر</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>ما يحلّه</h3>
+          <ul>
+            <li>قناع النوم العادي يسقط أو يضغط على العينين</li>
+            <li>الوسادة ساخنة في صيف أستراليا الحار</li>
+            <li>السفر يُفسد روتين النوم</li>
+            <li>الناس يشترون قطع متفرقة بجودة متفاوتة</li>
+          </ul>
+          <h3 style="margin-top: 1.5rem;">المكونات (باقة)</h3>
+          <p style="color: var(--text-muted);">قناع نوم ثلاثي الأبعاد من حرير/ساتان + غطاء وسادة بامبو مبرد + حقيبة سفر فاخرة — كلها منتجات صينية شائعة لكن كـ «طقم DUSK» تصبح منتجاً جديداً</p>
+        </div>
+        <div class="card card-highlight">
+          <h3>إعادة التغليف كـ DUSK</h3>
+          <ul>
+            <li>الاسم: <strong>DUSK Veil — Deep Rest Comfort Set</strong></li>
+            <li>3 قطع في صندوق هدايا واحد</li>
+            <li>بطاقة: «كيف تبني روتين نوم في 5 خطوات»</li>
+            <li>مثالي للباقات: Eclipse + Veil = «طقم النوم الكامل»</li>
+          </ul>
+          <div class="price-row">
+            <span>تكلفة المورد: <strong>~10–16 AUD</strong></span>
+            <span>سعر البيع: <strong>69–89 AUD</strong></span>
+          </div>
+          <div class="price-row">
+            <span>الهامش الإجمالي:</span>
+            <span class="margin">~70–80%</span>
+          </div>
+          <div style="margin-top: 1rem;">
+            <span class="badge badge-success">أقل معدل إرجاع</span>
+            <span class="badge badge-success">مثالي للباقات</span>
+            <span class="badge badge-success">لا RCM مطلوب</span>
+          </div>
+        </div>
+      </div>
+      <span class="slide-number">09 / 18</span>
+    </section>
+
+    <!-- Slide 10: Bundle Strategy -->
+    <section class="slide" id="slide-10">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h2>استراتيجية الباقات — رفع متوسط الطلب</h2>
+      <div class="grid-3">
+        <div class="card product-card">
+          <div class="product-icon">🌙</div>
+          <h3>طقم البداية</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">DUSK Veil فقط</p>
+          <div class="stat" style="font-size: 1.8rem; margin-top: 1rem;">69 AUD</div>
+        </div>
+        <div class="card product-card card-highlight">
+          <div class="product-icon">⭐</div>
+          <h3>الأكثر مبيعاً</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Eclipse + Hush</p>
+          <div class="stat" style="font-size: 1.8rem; margin-top: 1rem;">179 AUD</div>
+          <span class="badge badge-gold" style="margin-top: 0.5rem;">وفّر 29 AUD</span>
+        </div>
+        <div class="card product-card">
+          <div class="product-icon">👑</div>
+          <h3>الطقم الكامل</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">الثلاثة معاً</p>
+          <div class="stat" style="font-size: 1.8rem; margin-top: 1rem;">249 AUD</div>
+          <span class="badge badge-gold" style="margin-top: 0.5rem;">وفّر 58 AUD</span>
+        </div>
+      </div>
+      <div class="verdict" style="margin-top: 2rem;">
+        <strong>متوسط الطلب المستهدف (AOV):</strong> 120–160 دولار أسترالي — هذا هو الحد الأدنى لتحقيق ربح مع إعلانات Meta بتكلفة 25–40 دولار لكل عميل في أستراليا.
+      </div>
+      <span class="slide-number">10 / 18</span>
+    </section>
+
+    <!-- Slide 11: High Delivery Rate -->
+    <section class="slide" id="slide-11">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h2>كيف نضمن معدل تأكيد وتسليم عالي؟</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>✅ في أستراليا مع Stripe</h3>
+          <ul>
+            <li><strong>الدفع مسبق</strong> — معدل تأكيد الطلبات ~98%+ (لا COD)</li>
+            <li><strong>شحن محلي 2–5 أيام</strong> — من مستودعات أسترالية</li>
+            <li>94% من الطرود تصل في الوقت (بيانات Shippit 2025)</li>
+            <li>85% من المتسوقين يثقون بالتاجر عندما يكون التسليم موثوقاً</li>
+            <li>منتجات عملية = العميل ينتظرها ويستلمها بفرح</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🛡️ قواعد حماية معدل التسليم</h3>
+          <ul>
+            <li><strong>لا شحن من الصين مباشرة</strong> — فقط مستودع AU</li>
+            <li><strong>طلب عينات</strong> قبل الإطلاق — تأكد الجودة = الوصف</li>
+            <li><strong>صور حقيقية</strong> — لا صور مورد = لا مفاجآت = لا رفض</li>
+            <li><strong>توقعات شحن واضحة</strong> على صفحة المنتج</li>
+            <li><strong>تتبع تلقائي</strong> عبر البريد الإلكتروني + SMS</li>
+            <li><strong>سياسة إرجاع 30 يوم</strong> — تقلل القلق وتزيد الشراء</li>
+          </ul>
+        </div>
+      </div>
+      <div class="verdict" style="margin-top: 1.5rem;">
+        <strong>لماذا لا تنخفض معدلاتنا مع الوقت؟</strong> لأننا لا نبيع «منتجاً viral» واحداً — نبني علامة في مجال دائم. المنافسة على الستائر السوداء عالية، لكن كـ «نظام نوم DUSK» أنت في فئة مختلفة.
+      </div>
+      <span class="slide-number">11 / 18</span>
+    </section>
+
+    <!-- Slide 12: Products to Avoid -->
+    <section class="slide" id="slide-12">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h2>منتجات يجب تجنبها</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>الفئة</th>
+            <th>لماذا تتجنبها</th>
+            <th>معدل الفشل</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>منتجات طبية / إنقاص وزن / جنسية</td>
+            <td>مرفوضة من Stripe والإعلانات — طلبك صريح</td>
+            <td><span class="badge badge-danger">محظور</span></td>
+          </tr>
+          <tr>
+            <td>أجهزة تدليك الرقبة / مصححات القامة</td>
+            <td>مشبعة جداً — معدلات تسليم تنخفض 60%+ عند التشبع</td>
+            <td><span class="badge badge-danger">عالي</span></td>
+          </tr>
+          <tr>
+            <td>إكسسوارات الهاتف / LED Galaxy</td>
+            <td>هامش 5–15% — لا يكفي لتكلفة الإعلان</td>
+            <td><span class="badge badge-danger">عالي</span></td>
+          </tr>
+          <tr>
+            <td>ملابس / أزياء</td>
+            <td>معدل إرجاع 20–30% — يدمر الهوامش</td>
+            <td><span class="badge badge-danger">عالي</span></td>
+          </tr>
+          <tr>
+            <td>ساعات ذكية / إلكترونيات رخيصة</td>
+            <td>شكاوى جودة + بطاريات + RCM + إرجاع</td>
+            <td><span class="badge badge-warning">متوسط-عالي</span></td>
+          </tr>
+          <tr>
+            <td>طعام الحيوانات الأليفة</td>
+            <td>شحن ثقيل + منافسة Pet Circle/Woolworths</td>
+            <td><span class="badge badge-warning">متوسط</span></td>
+          </tr>
+          <tr>
+            <td>منتج TikTok viral (شحن 20+ يوم)</td>
+            <td>chargebacks + مراجعات سلبية + رفض الطرود</td>
+            <td><span class="badge badge-danger">عالي جداً</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <span class="slide-number">12 / 18</span>
+    </section>
+
+    <!-- Slide 13: Suppliers -->
+    <section class="slide" id="slide-13">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h2>الموردون والشحن</h2>
+      <div class="grid-3">
+        <div class="card card-highlight">
+          <h3>1. CJ Dropshipping (AU)</h3>
+          <ul>
+            <li>مستودع أسترالي — 2–4 أيام</li>
+            <li>آلات صوت + أقنعة نوم</li>
+            <li>فلتر: «Ship from Australia»</li>
+            <li>تكامل Shopify مباشر</li>
+          </ul>
+          <span class="badge badge-success">الأولوية للمنتج 2 و 3</span>
+        </div>
+        <div class="card">
+          <h3>2. Dropshipzone</h3>
+          <ul>
+            <li>مستودع ملبورن — 2–5 أيام</li>
+            <li>منزل وحديقة + مفروشات</li>
+            <li>مجاني — يتطلب ABN</li>
+            <li>100,000+ منتج</li>
+          </ul>
+          <span class="badge badge-success">للستائر والتخزين</span>
+        </div>
+        <div class="card">
+          <h3>3. Spocket (AU)</h3>
+          <ul>
+            <li>موردون مُنتقون</li>
+            <li>3–7 أيام شحن</li>
+            <li>جودة أعلى — سعر أعلى</li>
+            <li>بديل إذا فشل CJ</li>
+          </ul>
+          <span class="badge badge-warning">احتياطي</span>
+        </div>
+      </div>
+      <div class="verdict" style="margin-top: 1.5rem;">
+        <strong>قاعدة ذهبية:</strong> اطلب عينة من كل منتج (3 عينات ≈ 60–90 دولار) قبل أي إعلان. صوّر العينات بنفسك — هذا الفرق بين متجر يثق به الأسترالي ومتجر يُرفض طرده.
+      </div>
+      <span class="slide-number">13 / 18</span>
+    </section>
+
+    <!-- Slide 14: $500 Budget -->
+    <section class="slide" id="slide-14">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h2>خطة الميزانية: 500 دولار</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>البند</th>
+            <th>التكلفة</th>
+            <th>ملاحظات</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Shopify Basic (شهر 1)</td>
+            <td>~1 USD (عرض 3 أشهر)</td>
+            <td>ثم 39 USD/شهر — ابدأ في الشهر المجاني</td>
+          </tr>
+          <tr>
+            <td>دومين dusksleep.com.au</td>
+            <td>~15 AUD</td>
+            <td>أو .com إذا .au غير متاح</td>
+          </tr>
+          <tr>
+            <td>عينات المنتجات (3)</td>
+            <td>~70 AUD</td>
+            <td>ضروري — لا تتخطاه أبداً</td>
+          </tr>
+          <tr>
+            <td>تغليف العلامة التجارية</td>
+            <td>~30 AUD</td>
+            <td>ملصقات + بطاقات + أكياس (Vistaprint)</td>
+          </tr>
+          <tr>
+            <td>شعار + تصميم (Canva Pro)</td>
+            <td>0–15 AUD</td>
+            <td>Canva مجاني كافٍ للبداية</td>
+          </tr>
+          <tr>
+            <td>إعلانات Meta/TikTok (اختبار)</td>
+            <td>~250 AUD</td>
+            <td>50 دولار/منتج × 3 + 100 للباقة</td>
+          </tr>
+          <tr>
+            <td>Stripe</td>
+            <td>0</td>
+            <td>2.9% + 0.30 AUD لكل معاملة فقط</td>
+          </tr>
+          <tr>
+            <td>احتياطي طوارئ</td>
+            <td>~70 AUD</td>
+            <td>شحن عينات إضافي / إعلان فائز</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="verdict" style="margin-top: 1rem;">
+        <strong>نصيحة حاسمة بميزانية 500$:</strong> ركّز 60% من الميزانية على المحتوى العضوي (TikTok/Reels) + 40% إعلانات. لا تنفق كل الميزانية على إعلانات قبل التحقق من المنتج بعينة حقيقية.
+      </div>
+      <span class="slide-number">14 / 18</span>
+    </section>
+
+    <!-- Slide 15: Marketing -->
+    <section class="slide" id="slide-15">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h2>استراتيجية التسويق</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>📱 المحتوى العضوي (مجاني — الأولوية)</h3>
+          <ul>
+            <li>TikTok/Reels: «قبل/بعد» تركيب Eclipse</li>
+            <li>«جربت كل شيء للنوم — هذا ما نجح»</li>
+            <li>كويز: «ما نوع نومك؟» → توصية منتج</li>
+            <li>UGC: عملاء حقيقيون (بعد أول 10 مبيعات)</li>
+            <li>محتوى موسمي: صيف = تبريد، شتاء = ظلام ودفء</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>💰 الإعلانات المدفوعة</h3>
+          <ul>
+            <li>Meta Ads: استهداف 25–55 سنة، أستراليا، اهتمامات: نوم، صحة، عمل عن بُعد</li>
+            <li>زاوية الإعلان: المشكلة أولاً (ليس المنتج)</li>
+            <li>فيديو 15–30 ثانية — ليس صور ثابتة</li>
+            <li>اختبار 3 زوايا × 3 منتجات = 9 إعلانات</li>
+            <li>أوقف الإعلان إذا CPA > 45 AUD بعد 3 أيام</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="margin-top: 1.5rem;">
+        <h3>📧 ما بعد الشراء (مجاني — يضاعف الربح)</h3>
+        <p style="color: var(--text-muted);">أتمتة Shopify Email: رسالة ترحيب → يوم 3: «كيف كان نومك؟» → يوم 14: عرض الباقة للعملاء الذين اشتروا منتجاً واحداً → يوم 30: طلب مراجعة. هذا يرفع LTV بدون تكلفة إعلان إضافية.</p>
+      </div>
+      <span class="slide-number">15 / 18</span>
+    </section>
+
+    <!-- Slide 16: Timeline -->
+    <section class="slide" id="slide-16">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h2>خطة التنفيذ — 6 أسابيع</h2>
+      <div class="timeline-item">
+        <span class="timeline-week">الأسبوع 1</span>
+        <div><strong>الأساس:</strong> تسجيل ABN (مجاني) → Shopify → دومين → شعار DUSK على Canva → طلب 3 عينات من CJ/Dropshipzone</div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-week">الأسبوع 2</span>
+        <div><strong>المنتج:</strong> استلام العينات → تصوير احترافي بالهاتف → كتابة صفحات منتجات → إعداد Stripe → سياسات الشحن والإرجاع</div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-week">الأسبوع 3</span>
+        <div><strong>الإطلاق الناعم:</strong> 10 منشورات TikTok/Reels → إطلاق المتجر → أول إعلان 15 AUD/يوم على أفضل منتج</div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-week">الأسبوع 4</span>
+        <div><strong>الاختبار:</strong> 3 إعلانات لكل منتج → قياس CPA → تحديد المنتج/الزاوية الفائزة → إيقاف الخاسر</div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-week">الأسبوع 5–6</span>
+        <div><strong>التوسع:</strong> مضاعفة ميزانية الإعلان على الفائز → إطلاق باقة «الطقم الكامل» → جمع مراجعات → تحسين صفحات الهبوط</div>
+      </div>
+      <div class="verdict" style="margin-top: 1.5rem;">
+        <strong>هدف الشهر الأول:</strong> 15–30 طلباً بمتوسط 120 AUD = 1,800–3,600 AUD إيرادات. ربح صافي متوقع: 400–900 AUD إذا كان CPA أقل من 35 AUD.
+      </div>
+      <span class="slide-number">16 / 18</span>
+    </section>
+
+    <!-- Slide 17: Risks -->
+    <section class="slide" id="slide-17">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h2>المخاطر وكيف نتعامل معها</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>المخاطر</th>
+            <th>الاحتمال</th>
+            <th>الحل</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>تكلفة إعلان مرتفعة في AU</td>
+            <td><span class="badge badge-warning">مرتفع</span></td>
+            <td>باقات بـ AOV 120+ + محتوى عضوي + كويز</td>
+          </tr>
+          <tr>
+            <td>منتج لا يطابق الصور</td>
+            <td><span class="badge badge-warning">متوسط</span></td>
+            <td>عينات إلزامية + صور حقيقية فقط</td>
+          </tr>
+          <tr>
+            <td>جهاز Hush بدون RCM</td>
+            <td><span class="badge badge-danger">خطير</span></td>
+            <td>تحقق من شهادة RCM قبل البيع — أو استبدله بمنتج غير كهربائي</td>
+          </tr>
+          <tr>
+            <td>نفاد الميزانية قبل أول بيعة</td>
+            <td><span class="badge badge-warning">متوسط</span></td>
+            <td>أسبوعين محتوى عضوي قبل الإعلانات المدفوعة</td>
+          </tr>
+          <tr>
+            <td>منافسة Loop/Soundcore</td>
+            <td><span class="badge badge-warning">متوسط</span></td>
+            <td>لا تنافس على السعر — نافس على التجربة والباقة والعلامة</td>
+          </tr>
+          <tr>
+            <td>موسمية الصيف/الشتاء</td>
+            <td><span class="badge badge-success">منخفض</span></td>
+            <td>3 منتجات تغطي كل الفصول — Eclipse شتاء، Veil صيف</td>
+          </tr>
+        </tbody>
+      </table>
+      <span class="slide-number">17 / 18</span>
+    </section>
+
+    <!-- Slide 18: Conclusion -->
+    <section class="slide" id="slide-18">
+      <span class="brand-tag">DUSK Sleep Co.</span>
+      <h1>الخلاصة</h1>
+      <div class="grid-2" style="margin-top: 2rem;">
+        <div>
+          <h3>ما بنيناه في هذا البحث</h3>
+          <ul>
+            <li>السوق: <strong>أستراليا</strong> — الأفضل لميزانيتك وStripe</li>
+            <li>المجال: <strong>بيئة النوم (DUSK)</strong> — دائم، واسع، هوامش عالية</li>
+            <li>3 مشاكل: ضوء + ضوضاء + راحة</li>
+            <li>3 منتجات: Eclipse + Hush + Veil</li>
+            <li>إعادة تغليف منتجات صينية شائعة كعلامة فاخرة</li>
+            <li>موردون محليون لشحن 2–5 أيام</li>
+            <li>خطة 500 دولار + جدول 6 أسابيع</li>
+          </ul>
+        </div>
+        <div class="card card-highlight">
+          <h3>أول 3 خطوات الآن</h3>
+          <ol style="list-style: decimal; padding-right: 1.5rem; color: #cbd5e1;">
+            <li style="padding: 0.5rem 0;">سجّل ABN مجاناً على business.gov.au</li>
+            <li style="padding: 0.5rem 0;">ابحث في CJ Dropshipping عن المنتجات الثلاثة (فلتر: Australia warehouse)</li>
+            <li style="padding: 0.5rem 0;">اطلب العينات — لا تبنِ المتجر قبل أن تلمس المنتج</li>
+          </ol>
+          <p style="margin-top: 1.5rem; color: var(--accent); font-weight: 600; font-size: 1.1rem;">
+            «لا تبع منتجاً تراه على الشاشة — بع منتجاً لمسته بيدك»
+          </p>
+        </div>
+      </div>
+      <p style="margin-top: 3rem; text-align: center; color: var(--text-muted);">
+        DUSK Sleep Co. — Your Night, Reclaimed 🌙
+      </p>
+      <span class="slide-number">18 / 18</span>
+    </section>
+
+  </div>
+
+  <nav class="nav">
+    <button onclick="prevSlide()" title="السابق">↑</button>
+    <button onclick="nextSlide()" title="التالي">↓</button>
+  </nav>
+
+  <script>
+    const deck = document.getElementById('deck');
+    const slides = document.querySelectorAll('.slide');
+    const progress = document.getElementById('progress');
+    let current = 0;
+
+    function updateProgress() {
+      progress.style.width = ((current + 1) / slides.length * 100) + '%';
+    }
+
+    function goTo(index) {
+      current = Math.max(0, Math.min(index, slides.length - 1));
+      slides[current].scrollIntoView({ behavior: 'smooth' });
+      updateProgress();
+    }
+
+    function nextSlide() { goTo(current + 1); }
+    function prevSlide() { goTo(current - 1); }
+
+    deck.addEventListener('scroll', () => {
+      const scrollPos = deck.scrollTop;
+      slides.forEach((slide, i) => {
+        const top = slide.offsetTop - deck.offsetTop;
+        const bottom = top + slide.offsetHeight;
+        if (scrollPos >= top - 100 && scrollPos < bottom - 100) {
+          current = i;
+          updateProgress();
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); nextSlide(); }
+      if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); prevSlide(); }
+    });
+
+    updateProgress();
+  </script>
+</body>
+</html>
