@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3 تخصصات × 3 منتجات — متجر أسترالي</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=DM+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080c14; --card: #0f1623; --accent: #3b9eff; --accent2: #ff6b35;
+      --green: #22c55e; --gold: #f59e0b; --text: #f0f4f8; --muted: #8b9cb3;
+      --border: rgba(59,158,255,0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'IBM Plex Sans Arabic', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; }
+    .deck { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+    .slide {
+      min-height: 100vh; scroll-snap-align: start; padding: 2.5rem 4rem;
+      display: flex; flex-direction: column; justify-content: center;
+      background: radial-gradient(ellipse at 70% 30%, rgba(59,158,255,0.05), transparent 60%), var(--bg);
+      position: relative;
+    }
+    .tag { position: absolute; top: 1.5rem; left: 2rem; font-size: 0.8rem; color: var(--muted); letter-spacing: 0.15em; }
+    .num { position: absolute; bottom: 1.5rem; left: 2rem; font-size: 0.8rem; color: var(--muted); }
+    h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.2; }
+    h2 { font-size: 1.85rem; color: var(--accent); margin-bottom: 1.25rem; font-weight: 600; }
+    h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .sub { color: var(--muted); font-size: 1.15rem; max-width: 720px; margin-bottom: 1.5rem; line-height: 1.7; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;
+    }
+    .card.hot { border-color: var(--accent); background: linear-gradient(135deg, var(--card), rgba(59,158,255,0.06)); }
+    .niche-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;
+      padding: 1rem 1.25rem; border-radius: 10px; border: 1px solid var(--border);
+    }
+    .niche-num { font-size: 2rem; font-weight: 700; color: var(--accent); min-width: 3rem; }
+  .niche1 .niche-num { color: #ff6b35; }
+  .niche2 .niche-num { color: #22c55e; }
+  .niche3 .niche-num { color: #a78bfa; }
+    ul { list-style: none; }
+    li { padding: 0.3rem 0; padding-right: 1.2rem; position: relative; color: #c8d3e0; font-size: 0.95rem; }
+    li::before { content: '▸'; position: absolute; right: 0; color: var(--accent); font-size: 0.75rem; top: 0.5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 0.75rem; }
+    th, td { padding: 0.6rem 0.85rem; text-align: right; border-bottom: 1px solid var(--border); }
+    th { background: rgba(59,158,255,0.1); color: var(--accent); }
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.75rem; margin: 0.1rem; }
+    .b-green { background: rgba(34,197,94,0.15); color: var(--green); }
+    .b-gold { background: rgba(245,158,11,0.15); color: var(--gold); }
+    .b-blue { background: rgba(59,158,255,0.15); color: var(--accent); }
+    .b-red { background: rgba(239,68,68,0.15); color: #f87171; }
+    .verdict {
+      border-right: 3px solid var(--accent); padding: 0.85rem 1.25rem;
+      background: rgba(59,158,255,0.08); border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.95rem;
+    }
+    .product-box {
+      border-top: 2px solid var(--border); margin-top: 0.75rem; padding-top: 0.75rem;
+    }
+    .price { font-family: 'DM Sans', sans-serif; }
+    .cost { color: var(--muted); font-size: 0.85rem; }
+    .sell { color: var(--green); font-weight: 700; font-size: 1.1rem; }
+    .en { font-family: 'DM Sans', sans-serif; direction: ltr; display: inline-block; color: #93c5fd; }
+    .nav { position: fixed; bottom: 1.5rem; right: 1.5rem; display: flex; gap: 0.4rem; z-index: 99; }
+    .nav button {
+      width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border);
+      background: var(--card); color: var(--accent); cursor: pointer; font-size: 1rem;
+    }
+    .progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); z-index: 99; transition: width 0.3s; }
+    @media (max-width: 800px) { .slide { padding: 1.5rem; } .grid2, .grid3 { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    @media print { .nav, .progress { display: none; } .slide { page-break-after: always; min-height: auto; } .deck { overflow: visible; height: auto; } }
+  </style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck" id="deck">
+
+<!-- 1 -->
+<section class="slide">
+  <span class="tag">AU MARKET RESEARCH v2 — JUNE 2026</span>
+  <h1>3 تخصصات واسعة<br>× 3 منتجات لكل تخصص</h1>
+  <p class="sub">بحث معاد من الصفر لسوق أستراليا — كل منتج يحل مشكلة مختلفة تماماً. المتجر: Next.js + React مخصص. اللغة: Australian English. الأسعار: USD.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem;">
+    <span class="badge b-blue">🇦🇺 Australia</span>
+    <span class="badge b-blue">Stripe</span>
+    <span class="badge b-blue">Next.js Store</span>
+    <span class="badge b-gold">$500 Budget</span>
+    <span class="badge b-green">High Delivery Rate</span>
+  </div>
+  <span class="num">01 / 22</span>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <span class="tag">METHODOLOGY</span>
+  <h2>منهجية البحث الجديد</h2>
+  <div class="grid2">
+    <div class="card hot">
+      <h3>ما تغيّر عن النسخة السابقة</h3>
+      <ul>
+        <li>لم نعد نقيّد البحث بمجال النوم الضيق</li>
+        <li>3 تخصصات <strong>واسعة</strong> — اختر واحداً فقط للبدء</li>
+        <li>كل منتج = <strong>مشكلة مستقلة</strong> (ليست حزمة نوم أو نظام واحد)</li>
+        <li>العروض الإضافية لمشاكل مختلفة — مسموحة</li>
+        <li>ABN أسترالي = إجراء تسجيل فقط، لا يقيّد المنتجات</li>
+        <li>متجر مخصص Next.js بدل Shopify</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>معايير الاختيار</h3>
+      <ul>
+        <li>جمهور واسع في أستراليا (ملايين المستهلكين)</li>
+        <li>مشكلة يومية + إلحاح شراء (FOMO عملي)</li>
+        <li>معدل تأكيد/تسليم عالي (دفع Stripe + شحن AU 2–5 أيام)</li>
+        <li>هامش 60%+ بعد التغليف كعلامة تجارية</li>
+        <li>منتج صيني شائع — لكن بتغليف جديد يبدو «أول مرة»</li>
+        <li>معدل إرجاع &lt;8% (ليس ملابس/إلكترونيات معقدة)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="verdict"><strong>بيانات السوق:</strong> التجارة الإلكترونية الأسترالية = $53B USD (AUD 82.6B) في 2025، نمو 14%. 82% من الأسر تتسوق أونلاين. 94% من الطرود تصل في الوقت.</div>
+  <span class="num">02 / 22</span>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <span class="tag">MARKET COMPARISON</span>
+  <h2>لماذا أستراليا؟ (بالدولار)</h2>
+  <table>
+    <tr><th>المعيار</th><th>🇦🇺 Australia</th><th>🇳🇿 New Zealand</th><th>🇸🇪 Scandinavia</th></tr>
+    <tr><td>حجم السوق</td><td><strong>~$53B USD</strong></td><td>~$7B USD</td><td>متوسط / مشبع</td></tr>
+    <tr><td>تكلفة إعلان (CPA)</td><td>$18–35 USD</td><td>$12–25 USD</td><td>$30–50 USD</td></tr>
+    <tr><td>Stripe</td><td><span class="badge b-green">ممتاز</span></td><td><span class="badge b-green">ممتاز</span></td><td><span class="badge b-green">ممتاز</span></td></tr>
+    <tr><td>شحن دروبشيب محلي</td><td>2–5 أيام</td><td>3–7 أيام</td><td>5–7 أيام (EU)</td></tr>
+    <tr><td>ميزانية $500</td><td><span class="badge b-green">الأنسب</span></td><td>بديل</td><td><span class="badge b-red">غير مناسب</span></td></tr>
+    <tr><td>لغة المتجر</td><td>Australian English</td><td>NZ English</td><td>4 لغات</td></tr>
+  </table>
+  <span class="num">03 / 22</span>
+</section>
+
+<!-- 4 OVERVIEW 3 NICHES -->
+<section class="slide">
+  <span class="tag">3 NICHES OVERVIEW</span>
+  <h2>التخصصات الثلاثة — نظرة عامة</h2>
+  <div class="grid3">
+    <div class="card hot niche1">
+      <div class="niche-header" style="border:none;padding:0;margin:0;">
+        <span class="niche-num">1</span>
+        <div><h3>Outdoor & Backyard Life</h3><p style="color:var(--muted);font-size:0.85rem;">الحياة الخارجية والفناء الخلفي</p></div>
+      </div>
+      <p style="font-size:0.9rem;color:#c8d3e0;margin:0.75rem 0;">سوق $1B+ USD — 60–75% من الأسر عندها BBQ. ثقافة أسترالية عميقة.</p>
+      <span class="badge b-gold">نمو 5–7% CAGR</span>
+      <span class="badge b-blue">علامة: ALFRESCO CO.</span>
+    </div>
+    <div class="card hot niche2">
+      <div class="niche-header" style="border:none;padding:0;margin:0;">
+        <span class="niche-num">2</span>
+        <div><h3>Pet Owner Essentials</h3><p style="color:var(--muted);font-size:0.85rem;">مستلزمات أصحاب الحيوانات</p></div>
+      </div>
+      <p style="font-size:0.9rem;color:#c8d3e0;margin:0.75rem 0;">67% من الأسر تملك حيواناً. سوق أونلاين $780M USD. إنفاق عاطفي عالي.</p>
+      <span class="badge b-gold">نمو 6.6% CAGR</span>
+      <span class="badge b-blue">علامة: WAGWELL</span>
+    </div>
+    <div class="card hot niche3">
+      <div class="niche-header" style="border:none;padding:0;margin:0;">
+        <span class="niche-num">3</span>
+        <div><h3>Home & Space Organisation</h3><p style="color:var(--muted);font-size:0.85rem;">تنظيم المنزل والمساحات</p></div>
+      </div>
+      <p style="font-size:0.9rem;color:#c8d3e0;margin:0.75rem 0;">سوق التخزين $320M USD → $700M بحلول 2034. شقق صغيرة في كل المدن.</p>
+      <span class="badge b-gold">نمو 8.8% CAGR</span>
+      <span class="badge b-blue">علامة: NESTWELL</span>
+    </div>
+  </div>
+  <div class="verdict"><strong>توصية:</strong> ابدأ بتخصص واحد فقط بميزانية $500. الأقوى للبداية: <strong>Pet Owner Essentials</strong> (عاطفة + إنفاق + معدل إرجاع منخفض) أو <strong>Home Organisation</strong> (طلب دائم على مدار السنة).</div>
+  <span class="num">04 / 22</span>
+</section>
+
+<!-- 5 NICHE 1 INTRO -->
+<section class="slide niche1">
+  <span class="tag">NICHE 1 — ALFRESCO CO.</span>
+  <h2>التخصص 1: Outdoor & Backyard Life</h2>
+  <p class="sub">تخصص <strong>واسع</strong> يغطي كل ما يتعلق بالحياة في الفناء الخلفي، الحديقة، والتراس — ليس منتجات مكمّلة لبعضها.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>لماذا ينجح في أستراليا؟</h3>
+      <ul>
+        <li>ثقافة «alfresco» — الفناء الخارجي = غرفة معيشة ثانية</li>
+        <li>سوق outdoor living = <strong>$1B+ USD</strong> وينمو 5–7%</li>
+        <li>500,000 وحدة BBQ تُباع سنوياً — 60–75% من الأسر</li>
+        <li>موسم صيف (أكتوبر–فبراير) + حديقة طوال السنة</li>
+        <li>منتجات عملية = العميل ينتظر الطرد ويستلمه</li>
+      </ul>
+    </div>
+    <div class="card hot">
+      <h3>لماذا معدل تسليم عالي؟</h3>
+      <ul>
+        <li>دفع Stripe مسبق = تأكيد ~98%</li>
+        <li>شحن من مستودع أسترالي 2–5 أيام</li>
+        <li>منتجات غير كهربائية (2 من 3) = لا RCM</li>
+        <li>مشاكل واضحة = توقعات واقعية = لا رفض</li>
+        <li>موردون: Dropshipzone, CJ AU, Factory Fast</li>
+      </ul>
+    </div>
+  </div>
+  <span class="num">05 / 22</span>
+</section>
+
+<!-- 6 NICHE 1 PRODUCTS -->
+<section class="slide">
+  <span class="tag">NICHE 1 — PRODUCTS</span>
+  <h2>3 منتجات — 3 مشاكل مختلفة</h2>
+  <div class="grid3">
+    <div class="card hot">
+      <h3>🪰 المشكلة: الذباب يفسد الطعام</h3>
+      <p class="en">ALFRESCO Shield — Pop-Up Mesh Food Cover Set</p>
+      <p style="font-size:0.85rem;color:var(--muted);margin:0.5rem 0;">شبكات قابلة للطي تحمي طعام الـ BBQ والتراس من الذباب والحشرات. إلحاح: «حفلة غداء الأحد والذباب يأكل قبل ضيوفك».</p>
+      <div class="product-box">
+        <div class="cost">تكلفة المورد: $4–7 USD</div>
+        <div class="sell price">سعر البيع: $29–45 USD</div>
+        <span class="badge b-green">هامش ~75%</span>
+        <span class="badge b-green">خفيف / لا RCM</span>
+      </div>
+    </div>
+    <div class="card hot">
+      <h3>💧 المشكلة: سقي الحديقة مرهق</h3>
+      <p class="en">ALFRESCO Flow — Expandable Garden Hose Kit</p>
+      <p style="font-size:0.85rem;color:var(--muted);margin:0.5rem 0;">خرطوم قابل للتمدد + رشاش متعدد الأوضاع. يحل التشابك والتخزين. إلحاح: «الصيف جاف وحديقتك تموت».</p>
+      <div class="product-box">
+        <div class="cost">تكلفة المورد: $10–16 USD</div>
+        <div class="sell price">سعر البيع: $55–79 USD</div>
+        <span class="badge b-green">هامش ~70%</span>
+        <span class="badge b-gold">طلب موسمي قوي</span>
+      </div>
+    </div>
+    <div class="card hot">
+      <h3>🔧 المشكلة: لا مكان لتخزين الأدوات</h3>
+      <p class="en">ALFRESCO Vault — Compact Deck Storage Box</p>
+      <p style="font-size:0.85rem;color:var(--muted);margin:0.5rem 0;">صندوق تخزين خارجي مقاوم للطقس — أدوات حديقة، وسائد، معدات BBQ. إلحاح: «المرآب ممتلئ والفناء فوضى».</p>
+      <div class="product-box">
+        <div class="cost">تكلفة المورد: $18–30 USD</div>
+        <div class="sell price">سعر البيع: $99–149 USD</div>
+        <span class="badge b-green">هامش ~65%</span>
+        <span class="badge b-blue">AOV مرتفع</span>
+      </div>
+    </div>
+  </div>
+  <span class="num">06 / 22</span>
+</section>
+
+<!-- 7 NICHE 2 INTRO -->
+<section class="slide niche2">
+  <span class="tag">NICHE 2 — WAGWELL</span>
+  <h2>التخصص 2: Pet Owner Essentials</h2>
+  <p class="sub">تخصص واسع لكل أصحاب الكلاب والقطط — العناية، السفر، المنزل. ليس متجر طعام حيوانات (ثقيل ومنافسة شديدة).</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>بيانات السوق</h3>
+      <ul>
+        <li><strong>28.7 مليون</strong> حيوان أليف — 69% من الأسر</li>
+        <li>سوق أونلاين: <strong>$780M USD</strong> (نمو 6.6%)</li>
+        <li>الأستراليون ينفقون على حيواناتهم كأفراد العائلة</li>
+        <li>إكسسوارات الحيوانات: $15B USD عالمياً</li>
+        <li>لا تنافس مباشر مع Pet Circle على الطعام</li>
+      </ul>
+    </div>
+    <div class="card hot">
+      <h3>لماذا الأقوى للميزانية $500؟</h3>
+      <ul>
+        <li>شراء عاطفي — أقل حساسية للسعر</li>
+        <li>محتوى UGC طبيعي (الكلب/القطة في الفيديو = إعلان مجاني)</li>
+        <li>منتجات خفيفة = شحن رخيص من AU</li>
+        <li>معدل إرجاع &lt;5% للإكسسوارات</li>
+        <li>3 مشاكل يومية مختلفة تماماً</li>
+      </ul>
+    </div>
+  </div>
+  <span class="num">07 / 22</span>
+</section>
+
+<!-- 8 NICHE 2 PRODUCTS -->
+<section class="slide">
+  <span class="tag">NICHE 2 — PRODUCTS</span>
+  <h2>3 منتجات — 3 مشاكل مختلفة</h2>
+  <div class="grid3">
+    <div class="card hot">
+      <h3>🐕 المشكلة: شعر الحيوان في كل مكان</h3>
+      <p class="en">WAGWELL FurClear — Reusable Pet Hair Removal Kit</p>
+      <p style="font-size:0.85rem;color:var(--muted);margin:0.5rem 0;">أداة إزالة شعر قابلة لإعادة الاستخدام للأثاث والمفروشات والسيارة. إلحاح: «ضيوف يأتون بعد ساعة والكنبة مليئة بالشعر».</p>
+      <div class="product-box">
+        <div class="cost">تكلفة المورد: $3–6 USD</div>
+        <div class="sell price">سعر البيع: $24–39 USD</div>
+        <span class="badge b-green">هامش ~80%</span>
+        <span class="badge b-green">منتج دخول رخيص</span>
+      </div>
+    </div>
+    <div class="card hot">
+      <h3>🧠 المشكلة: الملل يدمر المنزل</h3>
+      <p class="en">WAGWELL SnufflePro — Interactive Puzzle Feeder Mat</p>
+      <p style="font-size:0.85rem;color:var(--muted);margin:0.5rem 0;">سجادة ألغاز تخفي الطعام — تحفز الكلب وتمتص طاقته. إلحاح: «الأريكة ممزقة مرة أخرى لأنك ذهبت للعمل».</p>
+      <div class="product-box">
+        <div class="cost">تكلفة المورد: $6–10 USD</div>
+        <div class="sell price">سعر البيع: $35–55 USD</div>
+        <span class="badge b-green">هامش ~75%</span>
+        <span class="badge b-gold">فيديو viral محتمل</span>
+      </div>
+    </div>
+    <div class="card hot">
+      <h3>🚗 المشكلة: فوضى السيارة مع الحيوان</h3>
+      <p class="en">WAGWELL RideGuard — Waterproof Car Seat Hammock</p>
+      <p style="font-size:0.85rem;color:var(--muted);margin:0.5rem 0;">غطاء مقعد سيارة مقاوم للماء مع حواجز أبواب. إلحاح: «رحلة للشاطئ غداً والسيارة ستكون كارثة».</p>
+      <div class="product-box">
+        <div class="cost">تكلفة المورد: $8–14 USD</div>
+        <div class="sell price">سعر البيع: $45–65 USD</div>
+        <span class="badge b-green">هامش ~70%</span>
+        <span class="badge b-blue">AOV جيد</span>
+      </div>
+    </div>
+  </div>
+  <span class="num">08 / 22</span>
+</section>
+
+<!-- 9 NICHE 3 INTRO -->
+<section class="slide niche3">
+  <span class="tag">NICHE 3 — NESTWELL</span>
+  <h2>التخصص 3: Home & Space Organisation</h2>
+  <p class="sub">تخصص واسع لتنظيم كل مساحات المنزل — المطبخ، الخزانة، تحت السرير، خلف الباب. طلب دائم بلا موسمية.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>بيانات السوق</h3>
+      <ul>
+        <li>سوق home storage: <strong>$320M USD</strong> → $700M (2034)</li>
+        <li>نمو <strong>8.8% CAGR</strong> — من أسرع الفئات</li>
+        <li>شقق صغيرة في سيدني/ملبورن = حاجة ملحة للتخزين</li>
+        <li>فئة Home & Garden أونلاين = <strong>$7.4B USD</strong></li>
+        <li>معدل إرجاع &lt;5% — منتجات وظيفية واضحة</li>
+      </ul>
+    </div>
+    <div class="card hot">
+      <h3>لماذا معدل تسليم عالي؟</h3>
+      <ul>
+        <li>العميل يعرف بالضبط ما يشتري (لا مفاجآت)</li>
+        <li>لا مقاسات معقدة (ليس ملابس)</li>
+        <li>طلب على مدار السنة — لا يعتمد على موسم</li>
+        <li>محتوى «قبل/بعد» قوي على TikTok/Reels</li>
+        <li>مثالي لمتجر Next.js مع صفحات SEO</li>
+      </ul>
+    </div>
+  </div>
+  <span class="num">09 / 22</span>
+</section>
+
+<!-- 10 NICHE 3 PRODUCTS -->
+<section class="slide">
+  <span class="tag">NICHE 3 — PRODUCTS</span>
+  <h2>3 منتجات — 3 مشاكل مختلفة</h2>
+  <div class="grid3">
+    <div class="card hot">
+      <h3>👕 المشكلة: الخزانة ممتلئة</h3>
+      <p class="en">NESTWELL DoorMax — Over-Door Hanging Organiser</p>
+      <p style="font-size:0.85rem;color:var(--muted);margin:0.5rem 0;">منظم يتدلى خلف الباب — أحذية، إكسسوارات، مستحضرات. إلحاح: «لا مكان لملابس الشتاء الجديدة».</p>
+      <div class="product-box">
+        <div class="cost">تكلفة المورد: $5–9 USD</div>
+        <div class="sell price">سعر البيع: $32–49 USD</div>
+        <span class="badge b-green">هامش ~75%</span>
+      </div>
+    </div>
+    <div class="card hot">
+      <h3>📦 المشكلة: الملابس الموسمية تأكل المساحة</h3>
+      <p class="en">NESTWELL VacSpace — Vacuum Storage Bag Set + Pump</p>
+      <p style="font-size:0.85rem;color:var(--muted);margin:0.5rem 0;">أكياس تفريغ الهواء + مضخة يدوية — تضغط البطانيات والملابس. إلحاح: «الخزانة لا تُغلق والشتاء قادم».</p>
+      <div class="product-box">
+        <div class="cost">تكلفة المورد: $6–11 USD</div>
+        <div class="sell price">سعر البيع: $35–55 USD</div>
+        <span class="badge b-green">هامش ~75%</span>
+        <span class="badge b-gold">فيديو satisfying</span>
+      </div>
+    </div>
+    <div class="card hot">
+      <h3>🗄️ المشكلة: فوضى تحت الحوض</h3>
+      <p class="en">NESTWELL SinkExpand — Adjustable Under-Sink Shelf Rack</p>
+      <p style="font-size:0.85rem;color:var(--muted);margin:0.5rem 0;">رف قابل للتوسيع تحت حوض المطبخ — يتجاوز الأنابيب. إلحاح: «منتجات التنظيف مبعثرة على الأرض».</p>
+      <div class="product-box">
+        <div class="cost">تكلفة المورد: $8–13 USD</div>
+        <div class="sell price">سعر البيع: $39–59 USD</div>
+        <span class="badge b-green">هامش ~70%</span>
+        <span class="badge b-blue">مشكلة عالمية</span>
+      </div>
+    </div>
+  </div>
+  <span class="num">10 / 22</span>
+</section>
+
+<!-- 11 COMPARISON TABLE -->
+<section class="slide">
+  <span class="tag">COMPARISON</span>
+  <h2>مقارنة التخصصات الثلاثة</h2>
+  <table>
+    <tr>
+      <th>المعيار</th>
+      <th>1. Outdoor (ALFRESCO)</th>
+      <th>2. Pet (WAGWELL)</th>
+      <th>3. Home Org (NESTWELL)</th>
+    </tr>
+    <tr><td>حجم الجمهور</td><td>عريض (60%+ أسر)</td><td><strong>الأوسع</strong> (69% أسر)</td><td>عريض (كل من يعيش في شقة/منزل)</td></tr>
+    <tr><td>موسمية</td><td>متوسطة (صيف أقوى)</td><td><strong>لا موسمية</strong></td><td><strong>لا موسمية</strong></td></tr>
+    <tr><td>متوسط الطلب (AOV)</td><td>$65–110 USD</td><td>$35–55 USD</td><td>$35–55 USD</td></tr>
+    <tr><td>هامش إجمالي</td><td>65–75%</td><td><strong>70–80%</strong></td><td>70–75%</td></tr>
+    <tr><td>معدل إرجاع</td><td>3–6%</td><td><strong>2–5%</strong></td><td>3–5%</td></tr>
+    <tr><td>محتوى UGC</td><td>جيد (BBQ/حديقة)</td><td><strong>ممتاز</strong> (حيوانات)</td><td>جيد (قبل/بعد)</td></tr>
+    <tr><td>منافسة</td><td>متوسطة</td><td>متوسطة</td><td>منخفضة–متوسطة</td></tr>
+    <tr><td>الأفضل لـ $500</td><td>⭐⭐⭐</td><td><strong>⭐⭐⭐⭐⭐</strong></td><td>⭐⭐⭐⭐</td></tr>
+    <tr><td>الأفضل لـ Next.js SEO</td><td>⭐⭐⭐</td><td>⭐⭐⭐</td><td><strong>⭐⭐⭐⭐⭐</strong></td></tr>
+  </table>
+  <span class="num">11 / 22</span>
+</section>
+
+<!-- 12 BRANDING -->
+<section class="slide">
+  <span class="tag">BRANDING</span>
+  <h2>استراتيجية العلامة التجارية (الثلاثة)</h2>
+  <div class="grid3">
+    <div class="card">
+      <h3>ALFRESCO CO.</h3>
+      <p class="en">"Own Your Backyard"</p>
+      <ul>
+        <li>ألوان: أخضر زيتوني + برتقالي محروق</li>
+        <li>نبرة: أسترالية casual، عملية</li>
+        <li>تغليف: صندوق كرتون طبيعي + دليل حديقة</li>
+        <li>تصوير: فناء حقيقي أسترالي، BBQ، عائلات</li>
+      </ul>
+    </div>
+    <div class="card hot">
+      <h3>WAGWELL ★ موصى به</h3>
+      <p class="en">"Happy Dog, Happy Home"</p>
+      <ul>
+        <li>ألوان: مرجاني دافئ + أزرق بحري</li>
+        <li>نبرة: عاطفية، مرحة، أسترالية</li>
+        <li>تغليف: صندوق بملصق كلب + بطاقة نصائح</li>
+        <li>تصوير: كلاب أسترالية (كافودل شائع جداً)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>NESTWELL</h3>
+      <p class="en">"Space for Everything"</p>
+      <ul>
+        <li>ألوان: بيج + أبيض + رمادي دافئ</li>
+        <li>نبرة: هادئة، عملية، minimalist</li>
+        <li>تغليف: صندوق أبيض نظيف + دليل تنظيم</li>
+        <li>تصوير: شقق صغيرة سيدني/ملبورن</li>
+      </ul>
+    </div>
+  </div>
+  <div class="verdict">القاعدة: لا تبع «منتجاً» — بع <strong>حل مشكلة</strong> بعلامة تجارية. الاسم الأسترالي + التغليف + التصوير المحلي = سعر 3–5× تكلفة المورد.</div>
+  <span class="num">12 / 22</span>
+</section>
+
+<!-- 13 DELIVERY -->
+<section class="slide">
+  <span class="tag">DELIVERY RATE</span>
+  <h2>ضمان معدل التأكيد والتسليم العالي</h2>
+  <div class="grid2">
+    <div class="card hot">
+      <h3>في أستراليا مع Stripe</h3>
+      <ul>
+        <li>الدفع مسبق → تأكيد طلبات <strong>~98%</strong></li>
+        <li>لا COD = لا رفض عند التسليم</li>
+        <li>شحن AU warehouse: <strong>2–5 أيام</strong></li>
+        <li>94% من الطرود تصل في الوقت (Shippit 2025)</li>
+        <li>85% يثقون بالتاجر عندما التسليم موثوق</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>قواعد حماية معدل التسليم</h3>
+      <ul>
+        <li><strong>عينات إلزامية</strong> قبل أي إعلان ($50–70 USD)</li>
+        <li>صور حقيقية فقط — لا صور مورد</li>
+        <li>فلتر CJ/Dropshipzone: «Ship from Australia»</li>
+        <li>توقعات شحن واضحة على صفحة المنتج</li>
+        <li>تتبع تلقائي عبر email</li>
+        <li>سياسة إرجاع 30 يوم — تقلل القلق</li>
+        <li>تجنب المنتجات الكهربائية بدون RCM</li>
+      </ul>
+    </div>
+  </div>
+  <span class="num">13 / 22</span>
+</section>
+
+<!-- 14 AVOID -->
+<section class="slide">
+  <span class="tag">AVOID</span>
+  <h2>منتجات وتخصصات يجب تجنبها</h2>
+  <table>
+    <tr><th>تجنب</th><th>السبب</th></tr>
+    <tr><td>منتجات طبية / إنقاص وزن / جنسية</td><td>محظورة Stripe + إعلانات</td></tr>
+    <tr><td>طعام حيوانات (pet food)</td><td>ثقيل + منافسة Pet Circle/Woolworths</td></tr>
+    <tr><td>ملابس / أزياء</td><td>إرجاع 20–30%</td></tr>
+    <tr><td>منتج TikTok viral مشبع</td><td>معدل تسليم ينخفض 60%+ مع التشبع</td></tr>
+    <tr><td>شحن من الصين 15+ يوم</td><td>chargebacks + مراجعات سلبية</td></tr>
+    <tr><td>إلكترونيات بدون RCM</td><td>مخالفة قانونية في AU</td></tr>
+    <tr><td>3 منتجات لنفس المشكلة (نوم/نوم/نوم)</td><td>تضييق السوق — طلبك الحالي</td></tr>
+  </table>
+  <span class="num">14 / 22</span>
+</section>
+
+<!-- 15 NEXT.JS -->
+<section class="slide">
+  <span class="tag">TECH STACK</span>
+  <h2>متجر Next.js + React المخصص</h2>
+  <div class="grid2">
+    <div class="card hot">
+      <h3>البنية التقنية المقترحة</h3>
+      <ul>
+        <li><strong>Next.js 15</strong> — App Router + SSR/SSG لـ SEO</li>
+        <li><strong>Stripe Checkout</strong> — دفع أسترالي (AUD)</li>
+        <li><strong>Supabase / PostgreSQL</strong> — طلبات + منتجات</li>
+        <li><strong>CJ API / Dropshipzone</strong> — تنفيذ تلقائي</li>
+        <li><strong>Vercel</strong> — استضافة (مجاني للبداية)</li>
+        <li><strong>Australian English</strong> — copywriting محلي</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>ميزة Next.js على Shopify</h3>
+      <ul>
+        <li>تحكم كامل في تجربة العلامة التجارية</li>
+        <li>صفحات SEO لكل مشكلة (مثال: /solve/pet-hair-mess)</li>
+        <li>كويز تفاعلي: «أي مشكلة لديك؟» → منتج</li>
+        <li>لا رسوم شهرية $39 USD</li>
+        <li>أداء أسرع = تحويل أعلى</li>
+        <li>تكلفة: $0–12 USD/شهر (Vercel + domain)</li>
+      </ul>
+    </div>
+  </div>
+  <span class="num">15 / 22</span>
+</section>
+
+<!-- 16 BUDGET -->
+<section class="slide">
+  <span class="tag">$500 BUDGET</span>
+  <h2>خطة الميزانية — $500 USD</h2>
+  <table>
+    <tr><th>البند</th><th>التكلفة USD</th><th>ملاحظات</th></tr>
+    <tr><td>دومين .com.au أو .com</td><td>~$12</td><td>wagwell.com.au مثلاً</td></tr>
+    <tr><td>عينات 3 منتجات</td><td>~$55</td><td>إلزامي قبل الإعلان</td></tr>
+    <tr><td>تغليف العلامة (ملصقات/بطاقات)</td><td>~$25</td><td>Vistaprint</td></tr>
+    <tr><td>تصوير المنتجات</td><td>$0</td><td>هاتفك + عيناتك</td></tr>
+    <tr><td>Next.js + Vercel + Stripe</td><td>$0</td><td>مجاني للبداية</td></tr>
+    <tr><td>إعلانات Meta/TikTok</td><td>~$280</td><td>$93/منتج × 3</td></tr>
+    <tr><td>احتياطي</td><td>~$128</td><td>إعلان فائز / عينات إضافية</td></tr>
+  </table>
+  <div class="verdict">60% محتوى عضوي (TikTok/Reels) + 40% إعلانات. اختبر 3 منتجات، أوقف الخاسر بعد 3 أيام إذا CPA &gt; $40 USD.</div>
+  <span class="num">16 / 22</span>
+</section>
+
+<!-- 17 ABN -->
+<section class="slide">
+  <span class="tag">AU SETUP</span>
+  <h2>أوراق أستراليا — ABN والضرائب</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>ما تحتاجه (مجاني تقريباً)</h3>
+      <ul>
+        <li><strong>ABN</strong> — تسجيل مجاني على business.gov.au</li>
+        <li>لا تحتاج شركة Pty Ltd للبداية — Sole Trader يكفي</li>
+        <li><strong>GST 10%</strong> — إلزامي عند تجاوز $75K AUD/سنة</li>
+        <li>Stripe Australia — يتطلب ABN للتفعيل الكامل</li>
+        <li>ABN لا يقيّد نوع المنتجات — أي منتج قانوني</li>
+      </ul>
+    </div>
+    <div class="card hot">
+      <h3>ما لا تحتاجه الآن</h3>
+      <ul>
+        <li>تسجيل شركة — انتظر أول $2K USD ربح</li>
+        <li>محاسب — انتظر أول $500 USD/شهر</li>
+        <li>علامة تجارية مسجلة — انتظر التحقق من المنتج</li>
+        <li>مستودع محلي — Dropshipzone/CJ AU يكفي</li>
+        <li>RCM — فقط إذا بعت منتجات كهربائية</li>
+      </ul>
+    </div>
+  </div>
+  <span class="num">17 / 22</span>
+</section>
+
+<!-- 18 SUPPLIERS -->
+<section class="slide">
+  <span class="tag">SUPPLIERS</span>
+  <h2>الموردون — شحن من أستراليا</h2>
+  <table>
+    <tr><th>المورد</th><th>الشحن</th><th>الأفضل لـ</th><th>التكلفة</th></tr>
+    <tr><td><strong>CJ Dropshipping AU</strong></td><td>2–4 أيام</td><td>Pet + Home Org</td><td>مجاني</td></tr>
+    <tr><td><strong>Dropshipzone</strong></td><td>2–5 أيام</td><td>Outdoor + Home</td><td>مجاني (ABN)</td></tr>
+    <tr><td><strong>Factory Fast</strong></td><td>2–6 أيام</td><td>Outdoor + Garden</td><td>مجاني</td></tr>
+    <tr><td><strong>EPROLO AU</strong></td><td>2–4 أيام</td><td>تغليف مخصص</td><td>مجاني</td></tr>
+  </table>
+  <div class="verdict"><strong>قاعدة ذهبية:</strong> لا تبنِ المتجر قبل أن تلمس المنتج. اطلب 3 عينات ($55 USD) → صوّرها → ثم ابنِ Next.js.</div>
+  <span class="num">18 / 22</span>
+</section>
+
+<!-- 19 TIMELINE -->
+<section class="slide">
+  <span class="tag">TIMELINE</span>
+  <h2>خطة التنفيذ — 6 أسابيع</h2>
+  <div class="card" style="margin-bottom:0.75rem;"><strong>الأسبوع 1:</strong> ABN + اختيار تخصص واحد + طلب 3 عينات + دومين + شعار Canva</div>
+  <div class="card" style="margin-bottom:0.75rem;"><strong>الأسبوع 2:</strong> استلام عينات + تصوير + بناء Next.js (صفحات منتج + Stripe + سياسات)</div>
+  <div class="card" style="margin-bottom:0.75rem;"><strong>الأسبوع 3:</strong> 10 منشورات TikTok/Reels + إطلاق المتجر + أول إعلان $10/يوم</div>
+  <div class="card" style="margin-bottom:0.75rem;"><strong>الأسبوع 4:</strong> اختبار 3 زوايا إعلانية × 3 منتجات — قياس CPA</div>
+  <div class="card" style="margin-bottom:0.75rem;"><strong>الأسبوع 5–6:</strong> مضاعفة الميزانية على الفائز + جمع مراجعات + تحسين SEO</div>
+  <div class="verdict"><strong>هدف الشهر 1:</strong> 15–25 طلب × $40 AOV = $600–1,000 USD إيرادات. ربح صافي: $150–350 USD إذا CPA &lt; $25 USD.</div>
+  <span class="num">19 / 22</span>
+</section>
+
+<!-- 20 UPSELLS -->
+<section class="slide">
+  <span class="tag">UPSELLS</span>
+  <h2>عروض إضافية — مشاكل مختلفة (مسموح)</h2>
+  <div class="grid3">
+    <div class="card">
+      <h3>مثال WAGWELL</h3>
+      <ul>
+        <li>اشترى FurClear (شعر) →</li>
+        <li>عرض SnufflePro (ملل) ✓</li>
+        <li>عرض RideGuard (سيارة) ✓</li>
+        <li>❌ لا تعرض فرشاة شعر أخرى</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>مثال ALFRESCO</h3>
+      <ul>
+        <li>اشترى Food Cover (ذباب) →</li>
+        <li>عرض Hose Kit (سقي) ✓</li>
+        <li>عرض Storage Box (تخزين) ✓</li>
+        <li>❌ لا تعرض غطاء طعام آخر</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>مثال NESTWELL</h3>
+      <ul>
+        <li>اشترى Door Organiser (خزانة) →</li>
+        <li>عرض VacSpace (ملابس موسمية) ✓</li>
+        <li>عرض SinkExpand (مطبخ) ✓</li>
+        <li>❌ لا تعرض منظم باب آخر</li>
+      </ul>
+    </div>
+  </div>
+  <span class="num">20 / 22</span>
+</section>
+
+<!-- 21 RECOMMENDATION -->
+<section class="slide">
+  <span class="tag">FINAL RECOMMENDATION</span>
+  <h2>التوصية النهائية</h2>
+  <div class="card hot" style="padding:1.5rem;margin-bottom:1rem;">
+    <h3>🏆 ابدأ بـ: WAGWELL — Pet Owner Essentials</h3>
+    <p style="color:#c8d3e0;margin-top:0.5rem;line-height:1.7;">
+      أوسع جمهور (69% أسر) + أعلى هامش (70–80%) + أقل إرجاع (2–5%) + محتوى UGC طبيعي + لا موسمية + 3 مشاكل مختلفة تماماً (شعر / ملل / سيارة). مثالي لميزانية $500 ومتجر Next.js مخصص.
+    </p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>البديل 1: NESTWELL</h3>
+      <p style="font-size:0.9rem;color:var(--muted);">إذا تفضل SEO طويل المدى + طلب دائم + محتوى before/after</p>
+    </div>
+    <div class="card">
+      <h3>البديل 2: ALFRESCO</h3>
+      <p style="font-size:0.9rem;color:var(--muted);">إذا تطلق قبل صيف أستراليا (أكتوبر) + AOV أعلى</p>
+    </div>
+  </div>
+  <span class="num">21 / 22</span>
+</section>
+
+<!-- 22 NEXT STEPS -->
+<section class="slide">
+  <span class="tag">NEXT STEPS</span>
+  <h1>أول 4 خطوات الآن</h1>
+  <div class="grid2" style="margin-top:1.5rem;">
+    <div class="card hot">
+      <h3>1. اختر تخصصاً واحداً</h3>
+      <p style="color:var(--muted);font-size:0.9rem;">الموصى به: WAGWELL (Pet Owner Essentials)</p>
+    </div>
+    <div class="card hot">
+      <h3>2. سجّل ABN مجاناً</h3>
+      <p style="color:var(--muted);font-size:0.9rem;">business.gov.au — 15 دقيقة</p>
+    </div>
+    <div class="card hot">
+      <h3>3. اطلب 3 عينات</h3>
+      <p style="color:var(--muted);font-size:0.9rem;">CJ Dropshipping → فلتر: Ship from Australia</p>
+    </div>
+    <div class="card hot">
+      <h3>4. لا تبنِ المتجر بعد</h3>
+      <p style="color:var(--muted);font-size:0.9rem;">المس المنتج أولاً — ثم Next.js</p>
+    </div>
+  </div>
+  <p style="margin-top:2rem;text-align:center;color:var(--muted);">Australian English · USD Pricing · Next.js Custom Store · Stripe AU</p>
+  <span class="num">22 / 22</span>
+</section>
+
+</div>
+<nav class="nav">
+  <button onclick="go(current-1)">↑</button>
+  <button onclick="go(current+1)">↓</button>
+</nav>
+<script>
+  const slides=document.querySelectorAll('.slide'), prog=document.getElementById('progress'), deck=document.getElementById('deck');
+  let current=0;
+  function go(i){current=Math.max(0,Math.min(i,slides.length-1));slides[current].scrollIntoView({behavior:'smooth'});prog.style.width=((current+1)/slides.length*100)+'%';}
+  deck.addEventListener('scroll',()=>{const p=deck.scrollTop;slides.forEach((s,i)=>{if(p>=s.offsetTop-80&&p<s.offsetTop+s.offsetHeight-80){current=i;prog.style.width=((i+1)/slides.length*100)+'%';}});});
+  document.addEventListener('keydown',e=>{if(['ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();go(current+1);}if(['ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(current-1);}});
+  prog.style.width=(1/slides.length*100)+'%';
+</script>
+</body>
+</html>
