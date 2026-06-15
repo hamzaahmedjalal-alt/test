@@ -29,10 +29,18 @@ Each niche has 3 products solving **different problems** (not complementary bund
 - **Suppliers:** CJ Dropshipping AU, Dropshipzone, Factory Fast
 - **Budget:** $500 USD execution plan included
 
-## Top Pick
+## Top Pick: WAGWELL — Pet Owner Essentials
 
-**WAGWELL** — Pet Owner Essentials
-- 69% of AU households own a pet
-- 70–80% gross margins
-- 2–5% return rate
-- 3 problems: pet hair / boredom destruction / car travel mess
+| Product | Marketing Name | Price AUD |
+|---------|----------------|-----------|
+| Fur on couch | **FUR-VANISH™** Electrostatic Pet Hair Liberation Kit | $44.95 |
+| Boredom destruction | **SNOOTROOT™** Canine Enrichment Snuffle Foraging Mat | $54.95 |
+| Car mess | **ROADIE-SHIELD™** Waterproof Hammock Car Seat Protector | $64.95 |
+| All 3 bundle | **Full Harmony Kit** | $119.95 |
+
+## Brand & Marketing Docs
+
+| Document | Description |
+|----------|-------------|
+| [wagwell/BRAND-MARKETING-STRATEGY.md](wagwell/BRAND-MARKETING-STRATEGY.md) | Full positioning, messaging, ad copy, CRO strategy |
+| [wagwell/STORE-OPERATIONS-MANAGER.md](wagwell/STORE-OPERATIONS-MANAGER.md) | Store ops hub: pricing, offers, upsells, suppliers, KPIs |
