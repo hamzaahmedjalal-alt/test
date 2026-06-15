@@ -38,7 +38,15 @@ Each niche has 3 products solving **different problems** (not complementary bund
 | Car mess | **ROADIE-SHIELD™** Waterproof Hammock Car Seat Protector | $64.95 |
 | All 3 bundle | **Full Harmony Kit** | $119.95 |
 
-## Brand & Marketing Docs
+## WAGWELL Next.js Store
+
+```bash
+cd wagwell/store && npm install && npm run dev
+```
+
+Open http://localhost:3000
+
+See [wagwell/store/README.md](wagwell/store/README.md) for full route list.
 
 | Document | Description |
 |----------|-------------|
